@@ -1,0 +1,62 @@
+{
+  "name": "rxan-core",
+  "version": "0.0.0",
+  "description": "Core library for rxan (rxjs animation)",
+  "main": "dist/index.cjs.js",
+  "main:min": "dist/index.cjs.min.js",
+  "browser": "dist/index.umd.js",
+  "browser:min": "dist/index.umd.min.js",
+  "jsnext:main": "dist/index.esm.js",
+  "jsnext:main:min": "dist/index.esm.min.js",
+  "module": "dist/index.esm.js",
+  "module:min": "dist/index.esm.min.js",
+  "typings": "typings/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "pretest": "rollup -c",
+    "test": "mocha \"test/**/*.test.js\"",
+    "watch": "mocha -w \"test/**/*.test.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ailrun/rxan.git"
+  },
+  "keywords": [
+    "rx",
+    "rxjs",
+    "animation",
+    "reactive",
+    "ui"
+  ],
+  "author": {
+    "name": "Junyoung Clare Jang",
+    "email": "jjc9310@gmail.com",
+    "url": "https://ailrun.github.io"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ailrun/rxan/issues"
+  },
+  "homepage": "https://github.com/ailrun/rxan#readme",
+  "devDependencies": {
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "babelrc-rollup": "^3.0.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "rollup": "^0.52.2",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-uglify": "^2.0.1",
+    "rxjs": "^5.5.5",
+    "sinon": "^4.1.3",
+    "uglify-es": "^3.2.2"
+  },
+  "peerDependencies": {
+    "rxjs": "^5"
+  },
+  "files": [
+    "dist",
+    "typings"
+  ]
+}
