@@ -1,7 +1,7 @@
 import { Scheduler } from 'rxjs'
 
 const SchedulerConstructor =
-  Scheduler.async.constructor.__proto__
+  Scheduler.async.constructor.prototype.__proto__.constructor
 const defaultScheduler =
   Scheduler.animationFrame
 
@@ -16,7 +16,7 @@ const buildSchedulerTypeError = (name) => {
 }
 const withSchedulerChecker =
   (f) => (scheduler) => {
-    if (!(scheduler instanceof Scheduler)) {
+    if (!(scheduler instanceof SchedulerConstructor)) {
       throw buildSchedulerTypeError(f.name)
     }
 
