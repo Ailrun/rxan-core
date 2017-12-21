@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Add an easing function
+  - back
+  - circle
+
+### Changed
+
+### Removed
+
 ## [1.0.0-beta.3] - 2017-12-20
 
 ### Added
