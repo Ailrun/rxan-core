@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+### Changed
+
+### Removed
+
+### Miscellaneous
+- Add react example to readme
+
 ## [1.0.1] - 2017-12-21
 
 ### Added
