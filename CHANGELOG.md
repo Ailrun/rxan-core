@@ -6,23 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Added
-
-### Changed
-
-### Removed
-
 ### Miscellaneous
 - Add react example to readme
 
 ## [1.0.1] - 2017-12-21
 
-### Added
-
-### Changed
+### Miscellaneous
 - Fix github link
-
-### Removed
 
 ## [1.0.0] - 2017-12-21
 
@@ -31,27 +21,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - back
   - circle
 
-### Changed
-
-### Removed
-
 ## [1.0.0-beta.3] - 2017-12-20
 
-### Added
-
-### Changed
+### Fixed
 - Fix significant error of schedulerUtils
-
-### Removed
 
 ## [1.0.0-beta.2] - 2017-12-18
 
-### Added
-
-### Changed
-- Fix significant error of schedulerUtils
-
-### Removed
+### Fixed
+- ~~Fix significant error of schedulerUtils~~
 
 ## [1.0.0-beta.1] - 2017-12-18
 
@@ -67,7 +45,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - elastic
     - bounce
 
-### Changed
-
-### Removed
-
+[Unreleased]: https://github.com/Ailrun/rxan-core
+[1.0.1]: https://github.com/Ailrun/rxan-core/tree/v1.0.1
+[1.0.0]: https://github.com/Ailrun/rxan-core/tree/v1.0.0
+[1.0.0-beta.3]: https://github.com/Ailrun/rxan-core/tree/v1.0.0-beta.3
+[1.0.0-beta.2]: https://github.com/Ailrun/rxan-core/tree/v1.0.0-beta.2
+[1.0.0-beta.1]: https://github.com/Ailrun/rxan-core/tree/v1.0.0-beta.1
