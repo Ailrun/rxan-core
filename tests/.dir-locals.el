@@ -20,5 +20,6 @@
               (js2-strict-trailing-comma-warning . nil)
               (js2-strict-missing-semi-warning . nil)
               (js2-strict-inconsistent-return-warning . nil)
+              (js2-getprop-has-side-effects . t)
               (js2-additional-externs . (list "require" "describe" "it" "beforeEach" "afterEach" "expect"))))
  (json-mode . ((js-indent-level . 2))))
