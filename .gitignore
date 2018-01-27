@@ -50,7 +50,7 @@ jspm_packages/
 .env
 
 # Output of 'npm run build'
-dist/
+# dist/
 
 # Scratchpad
 scratchpad.js
