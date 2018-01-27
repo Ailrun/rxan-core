@@ -6,11 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.2] - 2018-01-27
+
 ### Fixed
 - Fix umd module
 
 ### Miscellaneous
 - Add react example to readme
+- Fix homepage and bug report links
 
 ## [1.0.1] - 2017-12-21
 
