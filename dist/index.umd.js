@@ -1,7 +1,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/Observable'), require('rxjs/add/observable/defer'), require('rxjs/add/observable/interval'), require('rxjs/add/operator/map'), require('rxjs/add/operator/concat'), require('rxjs/add/operator/takeWhile')) :
 	typeof define === 'function' && define.amd ? define(['exports', 'rxjs', 'rxjs/Observable', 'rxjs/add/observable/defer', 'rxjs/add/observable/interval', 'rxjs/add/operator/map', 'rxjs/add/operator/concat', 'rxjs/add/operator/takeWhile'], factory) :
-	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.Rx,global.Rx.Observable));
+	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.Rx,global.Rx));
 }(this, (function (exports,rxjs,Observable) { 'use strict';
 
 var SchedulerConstructor = rxjs.Scheduler.async.constructor.prototype.__proto__.constructor;
