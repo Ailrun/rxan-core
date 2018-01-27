@@ -15,14 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ailrun/rxan-core.git"
+    "url": "git+https://github.com/Ailrun/rxan-core.git"
   },
   "keywords": [
     "rx",
     "rxjs",
     "animation",
     "reactive",
-    "ui"
+    "ui",
+    "rxan"
   ],
   "author": {
     "name": "Junyoung Clare Jang",
@@ -31,9 +32,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ailrun/rxan/issues"
+    "url": "https://github.com/Ailrun/rxan-core/issues"
   },
-  "homepage": "https://github.com/ailrun/rxan#readme",
+  "homepage": "https://github.com/Ailrun/rxan-core#readme",
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
