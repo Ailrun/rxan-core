@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.3] - 2018-02-01
+
+### Fixed
+- Fix unusable in, out, inout variant of easing function. Now they are usable.
+
 ## [1.0.2] - 2018-01-27
 
 ### Fixed

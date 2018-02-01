@@ -4,12 +4,31 @@ const buildRangeError = (name) => {
 
   return new RangeError(errorMessage)
 }
-const withDomainChecker = (f) => (x) => {
+const buildTypeError = () => {
+  const errorMessage =
+    `input of withDomainChecker should have in, out, inout property.`
+
+  return new TypeError(errorMessage)
+}
+
+const withDomainCheckerImpl = (f) => (x) => {
   if (x < 0 || x > 1) {
     throw buildRangeError(f.name)
   }
 
   return f(x)
+}
+const withDomainChecker = (f) => {
+  if (!f.in || !f.out || !f.inout) {
+    throw buildTypeError()
+  }
+
+  const newF = withDomainCheckerImpl(f)
+  newF.in = withDomainCheckerImpl(f.in)
+  newF.out = withDomainCheckerImpl(f.out)
+  newF.inout = withDomainCheckerImpl(f.inout)
+
+  return newF
 }
 
 const asEaseOut = (f) => (x) => 1 - f(1 - x)
