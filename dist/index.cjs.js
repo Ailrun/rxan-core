@@ -74,7 +74,13 @@ var buildRangeError = function buildRangeError(name) {
 
   return new RangeError(errorMessage);
 };
-var withDomainChecker = function withDomainChecker(f) {
+var buildTypeError = function buildTypeError() {
+  var errorMessage = "input of withDomainChecker should have in, out, inout property.";
+
+  return new TypeError(errorMessage);
+};
+
+var withDomainCheckerImpl = function withDomainCheckerImpl(f) {
   return function (x) {
     if (x < 0 || x > 1) {
       throw buildRangeError(f.name);
@@ -82,6 +88,18 @@ var withDomainChecker = function withDomainChecker(f) {
 
     return f(x);
   };
+};
+var withDomainChecker = function withDomainChecker(f) {
+  if (!f.in || !f.out || !f.inout) {
+    throw buildTypeError();
+  }
+
+  var newF = withDomainCheckerImpl(f);
+  newF.in = withDomainCheckerImpl(f.in);
+  newF.out = withDomainCheckerImpl(f.out);
+  newF.inout = withDomainCheckerImpl(f.inout);
+
+  return newF;
 };
 
 var asEaseOut = function asEaseOut(f) {

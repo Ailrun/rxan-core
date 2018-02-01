@@ -57,6 +57,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - bounce
 
 [Unreleased]: https://github.com/Ailrun/rxan-core
+[1.0.3]: https://github.com/Ailrun/rxan-core/tree/v1.0.3
+[1.0.2]: https://github.com/Ailrun/rxan-core/tree/v1.0.2
 [1.0.1]: https://github.com/Ailrun/rxan-core/tree/v1.0.1
 [1.0.0]: https://github.com/Ailrun/rxan-core/tree/v1.0.0
 [1.0.0-beta.3]: https://github.com/Ailrun/rxan-core/tree/v1.0.0-beta.3

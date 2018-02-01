@@ -1,6 +1,6 @@
 {
   "name": "rxan-core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Core library for rxan (rxjs animation)",
   "main": "dist/index.cjs.js",
   "browser": "dist/index.umd.js",
