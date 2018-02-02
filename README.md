@@ -120,6 +120,30 @@ class Example extends Component {
 - *Warning*
     - *Do not use `queue` scheduler as scheduler. Such uses make an inifinite loop.*
 
+### periodOf
+- Usage
+  ```javascript
+  periodOf(scheduler)(period, cycles)
+  ```
+- Description
+  Function that makes an observerable emits value once per period.
+  This emits the current cycle of this period, start from `1`.
+  *This does not emit `1` immediately. This emit it after first period passed.**
+  This emit values only when its scheduler schedules.
+- Parameters
+    - `scheduler`
+      [Rx.js Scheduler] or `undefined`.
+      For `undefined` case, default scheduler is `animationFrame` scheduler.
+    - `period`
+      Positive `Number`.
+      Period of animation.
+    - `cycles`
+      Positive `Number` or `undefined`.
+      Cycles of animation. This function emit values `cycles` times and final value is `cycles`.
+      For `undefined` case, default value is `Number.POSITIVE_INFINITY`.
+- *Warning*
+    - *You should unsubscribe this when third argument is `undefined` or `Number.POSITIVE_INFINITY`, since such calls for this function make an infinite length observable. If you do not unsubscribe this, it will not garbage collected.*
+
 ### easing
 Easing functions are for mapping values between `0`~`1` to curve-shaped values starts from 0 and ends at 0.
 Every easing functions have its `in`, `out`, `inout` variants. You can use those like `easing.back.out`. Default function itself is `in` version. (i.e., `easing.back === easing.back.in`)

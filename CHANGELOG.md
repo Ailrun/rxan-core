@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Add periodOf function.
+  This function emits value periodically.
+
 ### Fixed
 - Check second argument of duration is negative or not.
   Negative second argument is invalid.
