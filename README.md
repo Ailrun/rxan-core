@@ -1,4 +1,4 @@
-# rxan-core
+# rxan-core #
 
 [![npm latest version](https://img.shields.io/npm/v/rxan-core/latest.svg)](https://www.npmjs.com/package/rxan-core)
 [![npm total download](https://img.shields.io/npm/dt/rxan-core.svg)](https://www.npmjs.com/package/rxan-core)
@@ -9,7 +9,7 @@
 Core package for rxan
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-## Table of Contents
+## Table of Contents ##
 
 - [rxan-core](#rxan-core)
     - [Requirement](#requirement)
@@ -33,18 +33,20 @@ Core package for rxan
 
 <!-- markdown-toc end -->
 
-## Requirement
+## Requirement ##
 
-This package requires RxJS@^5 as peer dependency.
-You should install rxjs in your project to use this package.
+This package requires `rxjs@^5` as peer dependency.
+You should install [RxJS](http://reactivex.io/rxjs/) in your project to use this package.
 
-## How to install
+## How to install ##
 
-```
+```shell
 npm install rxan-core
+# To install RxJS too,
+npm install rxjs
 ```
 
-## How to use
+## How to use ##
 
 with jQuery
 
@@ -99,9 +101,9 @@ class Example extends Component {
 }
 ```
 
-## APIs
+## APIs ##
 
-### msElapsed
+### msElapsed ###
 - Usage
   ```javascript
   msElapsed(scheduler)
@@ -118,7 +120,7 @@ class Example extends Component {
     - *Do not use `queue` scheduler as scheduler. Such uses make an inifinite loop.*
     - *You should unsubscribe this, since this function makes an infinite length observable. If you do not unsubscribe this, it will not garbage collected.*
 
-### during
+### during ###
 - Usage
   ```javascript
   during(scheduler)(duration)
@@ -136,7 +138,7 @@ class Example extends Component {
 - *Warning*
     - *Do not use `queue` scheduler as scheduler. Such uses make an inifinite loop.*
 
-### periodOf
+### periodOf ###
 - Usage
   ```javascript
   periodOf(scheduler)(period, cycles)
@@ -160,64 +162,66 @@ class Example extends Component {
 - *Warning*
     - *You should unsubscribe this when third argument is `undefined` or `Number.POSITIVE_INFINITY`, since such calls for this function make an infinite length observable. If you do not unsubscribe this, it will not garbage collected.*
 
-### easing
+### easing ###
 Easing functions are for mapping values between `0`~`1` to curve-shaped values starts from 0 and ends at 0.
 Every easing functions have its `in`, `out`, `inout` variants. You can use those like `easing.back.out`. Default function itself is `in` version. (i.e., `easing.back === easing.back.in`)
 
-#### easing.back
+#### easing.back ####
 
 | In version | Out version | InOut version |
 |------------|-------------|---------------|
 |![](./doc/back.in.png)|![](./doc/back.out.png)|![](./doc/back.inout.png)|
 
-#### easing.bounce
+#### easing.bounce ####
 
 | In version | Out version | InOut version |
 |------------|-------------|---------------|
 |![](./doc/bounce.in.png)|![](./doc/bounce.out.png)|![](./doc/bounce.inout.png)|
 
-#### easing.circle
+#### easing.circle ####
 
 | In version | Out version | InOut version |
 |------------|-------------|---------------|
 |![](./doc/circle.in.png)|![](./doc/circle.out.png)|![](./doc/circle.inout.png)|
 
-#### easing.cubic
+#### easing.cubic ####
 
 | In version | Out version | InOut version |
 |------------|-------------|---------------|
 |![](./doc/cubic.in.png)|![](./doc/cubic.out.png)|![](./doc/cubic.inout.png)|
 
-#### easing.elastic
+#### easing.elastic ####
 
 | In version | Out version | InOut version |
 |------------|-------------|---------------|
 |![](./doc/elastic.in.png)|![](./doc/elastic.out.png)|![](./doc/elastic.inout.png)|
 
-#### easing.exponential
+#### easing.exponential ####
 
 | In version | Out version | InOut version |
 |------------|-------------|---------------|
 |![](./doc/exponential.in.png)|![](./doc/exponential.out.png)|![](./doc/exponential.inout.png)|
 
-#### easing.linear
+#### easing.linear ####
 
 | In version | Out version | InOut version |
 |------------|-------------|---------------|
 |![](./doc/linear.in.png)|![](./doc/linear.out.png)|![](./doc/linear.inout.png)|
 
-#### easing.quadratic
+#### easing.quadratic ####
 
 | In version | Out version | InOut version |
 |------------|-------------|---------------|
 |![](./doc/quadratic.in.png)|![](./doc/quadratic.out.png)|![](./doc/quadratic.inout.png)|
 
-#### easing.sine
+#### easing.sine ####
 
 | In version | Out version | InOut version |
 |------------|-------------|---------------|
 |![](./doc/sine.in.png)|![](./doc/sine.out.png)|![](./doc/sine.inout.png)|
 
-## Author
+## Author ##
 
 - Junyoung Clare Jang: @ailrun
+
+[Rx.js Scheduler]: http://reactivex.io/rxjs/manual/overview.html#scheduler
