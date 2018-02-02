@@ -15,7 +15,7 @@ var withDefaultScheduler = function withDefaultScheduler(f) {
 };
 
 var buildSchedulerTypeError = function buildSchedulerTypeError(name) {
-  var errorMessage = 'scheduler parameter for ' + name + ' is not a instance of Scheduler';
+  var errorMessage = 'scheduler parameter for ' + name + ' is not an instance of Scheduler';
 
   return new TypeError(errorMessage);
 };
@@ -46,11 +46,16 @@ var msElapsed$1 = function msElapsed(scheduler) {
 var msElapsed$$1 = withScheduler(msElapsed$1);
 
 var durationTypeErrorMessage = 'second argument (duration) of during should be a number';
+var durationRangeErrorMessage = 'second argument (duration) of during should be a positive number';
 
 var during$1 = function during(scheduler) {
   return function (duration) {
     if (typeof duration !== 'number') {
       throw new TypeError(durationTypeErrorMessage);
+    }
+
+    if (duration <= 0) {
+      throw new RangeError(durationRangeErrorMessage);
     }
 
     return msElapsed$1(scheduler).map(function (ms) {

@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.0] - 2018-02-01
+
 ### Added
 - Add periodOf function.
   This function emits value periodically.
@@ -68,6 +70,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - bounce
 
 [Unreleased]: https://github.com/Ailrun/rxan-core
+[1.1.0]: https://github.com/Ailrun/rxan-core/tree/v1.1.0
 [1.0.3]: https://github.com/Ailrun/rxan-core/tree/v1.0.3
 [1.0.2]: https://github.com/Ailrun/rxan-core/tree/v1.0.2
 [1.0.1]: https://github.com/Ailrun/rxan-core/tree/v1.0.1
