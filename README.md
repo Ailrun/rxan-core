@@ -1,5 +1,11 @@
 # rxan-core
 
+[![npm latest version](https://img.shields.io/npm/v/rxan-core/latest.svg)](https://www.npmjs.com/package/rxan-core)
+[![npm total download](https://img.shields.io/npm/dt/rxan-core.svg)](https://www.npmjs.com/package/rxan-core)
+[![github license](https://img.shields.io/github/license/Ailrun/rxan-core.svg)](https://github.com/Ailrun/rxan-core/blob/master/LICENSE)
+[![github latest tag](https://img.shields.io/github/tag/Ailrun/rxan-core.svg)](https://github.com/Ailrun/rxan-core/tags)
+[![github commit from latest](https://img.shields.io/github/commits-since/Ailrun/rxan-core/latest.svg)](https://github.com/Ailrun/rxan-core)
+
 Core package for rxan
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
