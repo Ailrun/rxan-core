@@ -3,7 +3,7 @@
 Core package for rxan
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-## Table of Content
+## Table of Contents
 
 - [rxan-core](#rxan-core)
     - [Requirement](#requirement)
@@ -12,7 +12,17 @@ Core package for rxan
     - [APIs](#apis)
         - [msElapsed](#mselapsed)
         - [during](#during)
+        - [periodOf](#periodof)
         - [easing](#easing)
+            - [easing.back](#easingback)
+            - [easing.bounce](#easingbounce)
+            - [easing.circle](#easingcircle)
+            - [easing.cubic](#easingcubic)
+            - [easing.elastic](#easingelastic)
+            - [easing.exponential](#easingexponential)
+            - [easing.linear](#easinglinear)
+            - [easing.quadratic](#easingquadratic)
+            - [easing.sine](#easingsine)
     - [Author](#author)
 
 <!-- markdown-toc end -->
