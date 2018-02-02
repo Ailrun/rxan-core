@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Check second argument of duration is negative or not.
   Negative second argument is invalid.
 
+### Miscellaneous
+- Add documentations for apis
+
 ## [1.0.3] - 2018-02-01
 
 ### Fixed
