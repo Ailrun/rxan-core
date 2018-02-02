@@ -49,6 +49,16 @@ const bounce = (t) => {
   }
 }
 
+/**
+ * @desc
+ * Wolfram alpha code for bounce
+ * @code
+ * Piecewise[{{-(2.75*t - 0.125)^2 +0.015625, 2.75 * t < 0.25},{-(2.75*t - 0.5)^2 + 0.0625, 2.75 * t < 0.75}, {-(2.75*t - 1.25)^2+0.25, 2.75*t < 1.75}, {-(2.75*t-2.75)^2+1, 2.75*t >= 1.75}}]
+ */
+
+/**
+ * @desc same with bounce
+ */
 bounce.in = bounce
 bounce.out = asEaseOut(bounce)
 bounce.inout = asEaseInOut(bounce)
