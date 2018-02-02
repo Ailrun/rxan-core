@@ -55,6 +55,14 @@ describe('during', () => {
     expect(() => during()('a').subscribe(sandbox.spy())).to.throw(/duration/)
   })
 
+  it('should not work with negative second argument', () => {
+    expect(() => during()(-20).subscribe(sandbox.spy())).to.throw(/duration/)
+  })
+
+  it('should not work with second argument of 0', () => {
+    expect(() => during()(0).subscribe(sandbox.spy())).to.throw(/duration/)
+  })
+
   it('should emit value from 0 to 1', () => {
     const usePercent = sandbox.spy()
 

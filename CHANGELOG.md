@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Check second argument of duration is negative or not.
+  Negative second argument is invalid.
+
 ## [1.0.3] - 2018-02-01
 
 ### Fixed
