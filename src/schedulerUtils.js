@@ -10,7 +10,7 @@ const withDefaultScheduler =
 
 const buildSchedulerTypeError = (name) => {
   const errorMessage =
-    `scheduler parameter for ${name} is not a instance of Scheduler`
+    `scheduler parameter for ${name} is not an instance of Scheduler`
 
   return new TypeError(errorMessage)
 }

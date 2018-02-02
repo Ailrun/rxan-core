@@ -29,13 +29,12 @@ describe('msElapsed', () => {
     let subscription
 
     expect(() => {
-      msElapsed().subscribe(sandbox.spy())
+      subscription = msElapsed().subscribe(sandbox.spy())
     }).to.not.throw()
 
     sandbox.clock.tick(10)
-    if (subscription) {
-      subscription.unsubscribe()
-    }
+
+    subscription.unsubscribe()
   })
 
   it('should work with any rxjs scheduler except Scheduler.queue', () => {

@@ -16,7 +16,7 @@ describe('during', () => {
     })
     sandbox.clock.tick(0)
 
-    sandbox.stub(animationFrame, 'now').callsFake(() => 0)
+    sandbox.stub(animationFrame, 'now').callsFake(Date.now)
     sandbox.stub(asap, 'now').callsFake(Date.now)
     sandbox.stub(async, 'now').callsFake(Date.now)
   })
