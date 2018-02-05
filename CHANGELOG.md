@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.1] - 2018-02-04
+
 ### Fixed
 - Add a type for periodOf function.
 
@@ -76,6 +78,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - bounce
 
 [Unreleased]: https://github.com/Ailrun/rxan-core
+[1.1.1]: https://github.com/Ailrun/rxan-core/tree/v1.1.1
 [1.1.0]: https://github.com/Ailrun/rxan-core/tree/v1.1.0
 [1.0.3]: https://github.com/Ailrun/rxan-core/tree/v1.0.3
 [1.0.2]: https://github.com/Ailrun/rxan-core/tree/v1.0.2
