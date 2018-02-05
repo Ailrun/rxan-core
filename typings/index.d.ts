@@ -7,9 +7,9 @@ declare namespace Rxan {
 
   module easing {
     interface EasingFunc {
-      (percent: number): number;
-      in: EasingFunc;
-      out: (percent: number) => number;
+      (percent: number): number
+      in: EasingFunc
+      out: (percent: number) => number
     }
     const linear: EasingFunc
     const quadratic: EasingFunc
