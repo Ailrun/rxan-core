@@ -91,6 +91,10 @@ class Example extends Component {
       })
   }
 
+  componentWillUnmount() {
+    this.subscription.unsubscribe()
+  }
+
   render() {
     return (
       <div style={{ marginTop: this.state.marginTop }}>
