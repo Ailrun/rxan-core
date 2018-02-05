@@ -4,6 +4,7 @@ import { Scheduler } from 'rxjs/Scheduler'
 declare namespace Rxan {
   const msElasped: (scheduler?: Scheduler) => Observable<number>
   const during: (scheduler?: Scheduler) => (duration: number) => Observable<number>
+  const periodOf: (scheduler?: Scheduler) => (period: number, cycles?: number) => Observable<number>
 
   module easing {
     interface EasingFunc {
