@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Update RxJS to v6
+
+### Miscellaneous
+- Fix tests
+
 ## [1.1.1] - 2018-02-04
 
 ### Fixed

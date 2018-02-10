@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import 'rxjs/add/observable/defer'
 import 'rxjs/add/observable/interval'
 import 'rxjs/add/operator/map'

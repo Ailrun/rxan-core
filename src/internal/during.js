@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import 'rxjs/add/operator/concat'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/takeWhile'

@@ -1,6 +1,6 @@
-import { Scheduler } from 'rxjs'
 import sinon from 'sinon'
 
+import { Scheduler } from '../src/rxjsUtils'
 import {
   withDefaultScheduler, withSchedulerChecker, withScheduler,
 } from '../src/schedulerUtils'

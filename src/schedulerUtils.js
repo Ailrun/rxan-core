@@ -1,4 +1,4 @@
-import { Scheduler } from 'rxjs'
+import { Scheduler } from './rxjsUtils'
 
 const SchedulerConstructor =
   Scheduler.async.constructor.prototype.__proto__.constructor
