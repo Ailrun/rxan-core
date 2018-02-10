@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Miscellaneous
 - Fix tests
+- Fix test script
 
 ## [1.1.1] - 2018-02-04
 

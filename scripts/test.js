@@ -8,7 +8,6 @@ const Mocha = require('mocha')
 
 const mocha = new Mocha({
   ui: 'bdd',
-  reporter: 'landing',
 })
 
 const cwd = process.cwd()
@@ -25,7 +24,6 @@ const registerDir = (dir) => {
   entries
     .filter((filePath) => fs.statSync(filePath).isDirectory())
     .forEach(filePath => {
-      console.log(filePath)
       registerDir(filePath)
     })
 }
