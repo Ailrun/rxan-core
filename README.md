@@ -8,6 +8,13 @@
 
 Core package for rxan
 
+## FOR RXJS@^5 SUPPORTS
+This is **alpha** version of rxan-core supporting `rxjs@^6`.
+
+To see stable version that supports `rxjs@^5`, please check [stable branch].
+
+[stable branch]: https://github.com/Ailrun/rxan-core/tree/stable
+
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 ## Table of Contents ##
 
@@ -35,15 +42,15 @@ Core package for rxan
 
 ## Requirement ##
 
-This package requires `rxjs@^5` as peer dependency.
+This package requires `rxjs@^6` as peer dependency.
 You should install [RxJS](http://reactivex.io/rxjs/) in your project to use this package.
 
 ## How to install ##
 
 ```shell
-npm install rxan-core
+npm install rxan-core@alpha
 # To install RxJS too,
-npm install rxjs
+npm install rxjs@alpha
 ```
 
 ## How to use ##
