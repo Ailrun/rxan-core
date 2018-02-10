@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-alpha.1] - 2018-02-10
+
 ### Added
 - Update RxJS to v6
 
@@ -85,6 +87,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - bounce
 
 [Unreleased]: https://github.com/Ailrun/rxan-core
+[2.0.0-alpha.1]: https://github.com/Ailrun/rxan-core/tree/v2.0.0-alpha.1
 [1.1.1]: https://github.com/Ailrun/rxan-core/tree/v1.1.1
 [1.1.0]: https://github.com/Ailrun/rxan-core/tree/v1.1.0
 [1.0.3]: https://github.com/Ailrun/rxan-core/tree/v1.0.3

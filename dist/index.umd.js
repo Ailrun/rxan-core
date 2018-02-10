@@ -1,11 +1,23 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/Observable'), require('rxjs/add/observable/defer'), require('rxjs/add/observable/interval'), require('rxjs/add/operator/map'), require('rxjs/add/operator/concat'), require('rxjs/add/operator/takeWhile')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'rxjs', 'rxjs/Observable', 'rxjs/add/observable/defer', 'rxjs/add/observable/interval', 'rxjs/add/operator/map', 'rxjs/add/operator/concat', 'rxjs/add/operator/takeWhile'], factory) :
-	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.Rx,global.Rx));
-}(this, (function (exports,rxjs,Observable) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/add/observable/defer'), require('rxjs/add/observable/interval'), require('rxjs/add/operator/map'), require('rxjs/add/operator/concat'), require('rxjs/add/operator/takeWhile')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'rxjs', 'rxjs/add/observable/defer', 'rxjs/add/observable/interval', 'rxjs/add/operator/map', 'rxjs/add/operator/concat', 'rxjs/add/operator/takeWhile'], factory) :
+	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.Rx));
+}(this, (function (exports,rxjs) { 'use strict';
 
-var SchedulerConstructor = rxjs.Scheduler.async.constructor.prototype.__proto__.constructor;
-var defaultScheduler = rxjs.Scheduler.animationFrame;
+var asap = rxjs.Scheduler.asapScheduler ? rxjs.Scheduler.asapScheduler : rxjs.Scheduler.asap;
+var async = rxjs.Scheduler.asyncScheduler ? rxjs.Scheduler.asyncScheduler : rxjs.Scheduler.async;
+var queue = rxjs.Scheduler.queueScheduler ? rxjs.Scheduler.queueScheduler : rxjs.Scheduler.queue;
+var animationFrame = rxjs.Scheduler.animationFrameScheduler ? rxjs.Scheduler.animationFrameScheduler : rxjs.Scheduler.animationFrame;
+
+var Scheduler$1 = {
+  asap: asap,
+  async: async,
+  queue: queue,
+  animationFrame: animationFrame
+};
+
+var SchedulerConstructor = Scheduler$1.async.constructor.prototype.__proto__.constructor;
+var defaultScheduler = Scheduler$1.animationFrame;
 
 var withDefaultScheduler = function withDefaultScheduler(f) {
   return function () {
@@ -34,10 +46,10 @@ var withScheduler = function withScheduler(f) {
 };
 
 var msElapsed$1 = function msElapsed(scheduler) {
-  return Observable.Observable.defer(function () {
+  return rxjs.Observable.defer(function () {
     var startTime = scheduler.now();
 
-    return Observable.Observable.interval(0, scheduler).map(function () {
+    return rxjs.Observable.interval(0, scheduler).map(function () {
       return scheduler.now() - startTime;
     });
   });

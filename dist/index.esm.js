@@ -1,13 +1,24 @@
-import { Scheduler } from 'rxjs';
-import { Observable as Observable$1 } from 'rxjs/Observable';
+import { Observable, Scheduler } from 'rxjs';
 import 'rxjs/add/observable/defer';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/concat';
 import 'rxjs/add/operator/takeWhile';
 
-var SchedulerConstructor = Scheduler.async.constructor.prototype.__proto__.constructor;
-var defaultScheduler = Scheduler.animationFrame;
+var asap = Scheduler.asapScheduler ? Scheduler.asapScheduler : Scheduler.asap;
+var async = Scheduler.asyncScheduler ? Scheduler.asyncScheduler : Scheduler.async;
+var queue = Scheduler.queueScheduler ? Scheduler.queueScheduler : Scheduler.queue;
+var animationFrame = Scheduler.animationFrameScheduler ? Scheduler.animationFrameScheduler : Scheduler.animationFrame;
+
+var Scheduler$1 = {
+  asap: asap,
+  async: async,
+  queue: queue,
+  animationFrame: animationFrame
+};
+
+var SchedulerConstructor = Scheduler$1.async.constructor.prototype.__proto__.constructor;
+var defaultScheduler = Scheduler$1.animationFrame;
 
 var withDefaultScheduler = function withDefaultScheduler(f) {
   return function () {
@@ -36,10 +47,10 @@ var withScheduler = function withScheduler(f) {
 };
 
 var msElapsed$1 = function msElapsed(scheduler) {
-  return Observable$1.defer(function () {
+  return Observable.defer(function () {
     var startTime = scheduler.now();
 
-    return Observable$1.interval(0, scheduler).map(function () {
+    return Observable.interval(0, scheduler).map(function () {
       return scheduler.now() - startTime;
     });
   });
