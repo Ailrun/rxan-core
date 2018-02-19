@@ -110,7 +110,7 @@ var periodOf$1 = function periodOf(scheduler) {
 
     cycles = cycles || Number.POSITIVE_INFINITY;
 
-    return Observable$1.interval(period, scheduler).map(function (cycle) {
+    return Observable.interval(period, scheduler).map(function (cycle) {
       return cycle + 1;
     }).take(cycles);
   };
@@ -146,7 +146,7 @@ var toggle$1 = function toggle(scheduler) {
 
     cycles = cycles || Number.POSITIVE_INFINITY;
 
-    return Observable$1.interval(period, scheduler).map(function (cycle) {
+    return Observable.interval(period, scheduler).map(function (cycle) {
       return cycle % 2 === 0;
     }).take(cycles);
   };

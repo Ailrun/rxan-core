@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-alpha.4] - 2018-02-20
+
+### Added
+- Add `toggle` function
+  This function emit true and false periodically.
+
+### Fixed
+- Fix to export `periodOf` function.
+
 ## [2.0.0-alpha.3] - 2018-02-19
 
 ### Fixed
@@ -112,6 +121,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - bounce
 
 [Unreleased]: https://github.com/Ailrun/rxan-core
+[2.0.0-alpha.4]: https://github.com/Ailrun/rxan-core/tree/v2.0.0-alpha.4
 [2.0.0-alpha.3]: https://github.com/Ailrun/rxan-core/tree/v2.0.0-alpha.3
 [2.0.0-alpha.1]: https://github.com/Ailrun/rxan-core/tree/v2.0.0-alpha.1
 [1.2.0]: https://github.com/Ailrun/rxan-core/tree/v1.2.0
