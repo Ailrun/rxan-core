@@ -15,6 +15,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix tests
 - Fix test script
 
+## [1.1.2] - 2018-02-19
+
+### Fixed
+- Fix `SchedulerConstructor` hack more reliably.
+
+### Miscellaneous
+- Add reference to [rxan-react](https://github.com/Ailrun/rxan-react/) on the readme.
+
 ## [1.1.1] - 2018-02-04
 
 ### Fixed
@@ -88,6 +96,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased]: https://github.com/Ailrun/rxan-core
 [2.0.0-alpha.1]: https://github.com/Ailrun/rxan-core/tree/v2.0.0-alpha.1
+[1.1.2]: https://github.com/Ailrun/rxan-core/tree/v1.1.2
 [1.1.1]: https://github.com/Ailrun/rxan-core/tree/v1.1.1
 [1.1.0]: https://github.com/Ailrun/rxan-core/tree/v1.1.0
 [1.0.3]: https://github.com/Ailrun/rxan-core/tree/v1.0.3
