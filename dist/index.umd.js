@@ -16,7 +16,7 @@ var Scheduler$1 = {
   animationFrame: animationFrame
 };
 
-var SchedulerConstructor = Scheduler$1.async.constructor.prototype.__proto__.constructor;
+var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(Scheduler$1.async)).constructor;
 var defaultScheduler = Scheduler$1.animationFrame;
 
 var withDefaultScheduler = function withDefaultScheduler(f) {
