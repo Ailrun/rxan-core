@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/concat';
 import 'rxjs/add/operator/takeWhile';
 
-var SchedulerConstructor = Scheduler.async.constructor.prototype.__proto__.constructor;
+var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(Scheduler.async)).constructor;
 var defaultScheduler = Scheduler.animationFrame;
 
 var withDefaultScheduler = function withDefaultScheduler(f) {

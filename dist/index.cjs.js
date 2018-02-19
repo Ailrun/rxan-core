@@ -10,7 +10,7 @@ require('rxjs/add/operator/map');
 require('rxjs/add/operator/concat');
 require('rxjs/add/operator/takeWhile');
 
-var SchedulerConstructor = rxjs.Scheduler.async.constructor.prototype.__proto__.constructor;
+var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(rxjs.Scheduler.async)).constructor;
 var defaultScheduler = rxjs.Scheduler.animationFrame;
 
 var withDefaultScheduler = function withDefaultScheduler(f) {

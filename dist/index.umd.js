@@ -4,7 +4,7 @@
 	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.Rx,global.Rx));
 }(this, (function (exports,rxjs,Observable) { 'use strict';
 
-var SchedulerConstructor = rxjs.Scheduler.async.constructor.prototype.__proto__.constructor;
+var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(rxjs.Scheduler.async)).constructor;
 var defaultScheduler = rxjs.Scheduler.animationFrame;
 
 var withDefaultScheduler = function withDefaultScheduler(f) {
