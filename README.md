@@ -19,6 +19,7 @@ Core package for rxan
         - [msElapsed](#mselapsed)
         - [during](#during)
         - [periodOf](#periodof)
+        - [toggle](#toggle)
         - [easing](#easing)
             - [easing.back](#easingback)
             - [easing.bounce](#easingbounce)
@@ -148,9 +149,9 @@ class Example extends Component {
   periodOf(scheduler)(period, cycles)
   ```
 - Description
-  Function that makes an observerable emits value once per period.
+  Function that makes an observable emits value once per period.
   This emits the current cycle of this period, start from `1`.
-  *This does not emit `1` immediately. This emit it after first period passed.**
+  **This does not emit `1` immediately. This emit it after first period passed.**
   This emit values only when its scheduler schedules.
 - Parameters
     - `scheduler`
@@ -162,6 +163,30 @@ class Example extends Component {
     - `cycles`
       Positive `Number` or `undefined`.
       Cycles of animation. This function emit values `cycles` times and final value is `cycles`.
+      For `undefined` case, default value is `Number.POSITIVE_INFINITY`.
+- *Warning*
+    - *You should unsubscribe this when third argument is `undefined` or `Number.POSITIVE_INFINITY`, since such calls for this function make an infinite length observable. If you do not unsubscribe this, it will not garbage collected.*
+
+### toggle ###
+- Usage
+  ```javascript
+  toggle(scheduler)(period, cycles)
+  ```
+- Description
+  Function that makes an observable emits boolean once per period.
+  First boolean is `true`, and next is `false`, and next is true, ... and so on.
+  **This does not emit `true` immediately. This emit it after first period passed.**
+  This emit values only when its scheduler schedules.
+- Parameters
+    - `scheduler`
+      [Rx.js Scheduler] or `undefined`.
+      For `undefined` case, default scheduler is `animationFrame` scheduler.
+    - `period`
+      Positive `Number`.
+      Period of animation.
+    - `cycles`
+      Positive `Number` or `undefined`.
+      Cycles of animation. This function emit values `cycles` times and final value is `cycles % 2 === 1`.
       For `undefined` case, default value is `Number.POSITIVE_INFINITY`.
 - *Warning*
     - *You should unsubscribe this when third argument is `undefined` or `Number.POSITIVE_INFINITY`, since such calls for this function make an infinite length observable. If you do not unsubscribe this, it will not garbage collected.*
