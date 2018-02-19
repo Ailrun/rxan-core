@@ -9,6 +9,7 @@ require('rxjs/add/observable/interval');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/concat');
 require('rxjs/add/operator/takeWhile');
+require('rxjs/add/operator/take');
 
 var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(rxjs.Scheduler.async)).constructor;
 var defaultScheduler = rxjs.Scheduler.animationFrame;
@@ -73,6 +74,78 @@ var during$1 = function during(scheduler) {
 };
 
 var during$$1 = withScheduler(during$1);
+
+var periodTypeErrorMessage = 'second argument (period) of periodOf should be a number';
+var periodRangeErrorMessage = 'second argument (period) of periodOf should be a positive number';
+
+var cyclesTypeErrorMessage = 'third argument (cycles) of periodOf should be undefined or a number';
+var cyclesRangeErrorMessage = 'third argument (cycles) of periodOf should be a positive number';
+
+var periodOf$1 = function periodOf(scheduler) {
+  return function (period, cycles) {
+    if (typeof period !== 'number') {
+      throw new TypeError(periodTypeErrorMessage);
+    }
+
+    if (period <= 0) {
+      throw new RangeError(periodRangeErrorMessage);
+    }
+
+    if (cycles) {
+      if (typeof cycles !== 'number') {
+        throw new TypeError(cyclesTypeErrorMessage);
+      }
+
+      if (cycles <= 0) {
+        throw new RangeError(cyclesRangeErrorMessage);
+      }
+    }
+
+    cycles = cycles || Number.POSITIVE_INFINITY;
+
+    return Observable.Observable.interval(period, scheduler).map(function (cycle) {
+      return cycle + 1;
+    }).take(cycles);
+  };
+};
+
+var periodOf$$1 = withScheduler(periodOf$1);
+
+var periodTypeErrorMessage$1 = 'second argument (period) of toggle should be a number';
+var periodRangeErrorMessage$1 = 'second argument (period) of toggle should be a positive number';
+
+var cyclesTypeErrorMessage$1 = 'third argument (cycles) of toggle should be undefined or a number';
+var cyclesRangeErrorMessage$1 = 'third argument (cycles) of toggle should be a positive number';
+
+var toggle$1 = function toggle(scheduler) {
+  return function (period, cycles) {
+    if (typeof period !== 'number') {
+      throw new TypeError(periodTypeErrorMessage$1);
+    }
+
+    if (period <= 0) {
+      throw new RangeError(periodRangeErrorMessage$1);
+    }
+
+    if (cycles) {
+      if (typeof cycles !== 'number') {
+        throw new TypeError(cyclesTypeErrorMessage$1);
+      }
+
+      if (cycles <= 0) {
+        throw new RangeError(cyclesRangeErrorMessage$1);
+      }
+    }
+
+    cycles = cycles || Number.POSITIVE_INFINITY;
+
+    return Observable.Observable.interval(period, scheduler).map(function (cycle) {
+      return cycle % 2 === 0;
+    }).take(cycles);
+  };
+};
+
+var toggle$$1 = withScheduler(toggle$1);
 
 var buildRangeError = function buildRangeError(name) {
   var errorMessage = "input of " + name + " should be smaller than 1, and larger than 0";
@@ -215,5 +288,7 @@ var index = Object.freeze({
 
 exports.msElapsed = msElapsed$$1;
 exports.during = during$$1;
+exports.periodOf = periodOf$$1;
+exports.toggle = toggle$$1;
 exports.easing = index;
 //# sourceMappingURL=index.cjs.js.map

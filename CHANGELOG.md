@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.0] - 2018-02-19
+
 ### Added
 - Add `toggle` function
   This function emit true and false periodically.
@@ -93,6 +95,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - bounce
 
 [Unreleased]: https://github.com/Ailrun/rxan-core
+[1.2.0]: https://github.com/Ailrun/rxan-core/tree/v1.2.0
 [1.1.2]: https://github.com/Ailrun/rxan-core/tree/v1.1.2
 [1.1.1]: https://github.com/Ailrun/rxan-core/tree/v1.1.1
 [1.1.0]: https://github.com/Ailrun/rxan-core/tree/v1.1.0
