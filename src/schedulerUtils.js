@@ -1,7 +1,7 @@
 import { Scheduler } from 'rxjs'
 
 const SchedulerConstructor =
-  Scheduler.async.constructor.prototype.__proto__.constructor
+  Object.getPrototypeOf(Object.getPrototypeOf(Scheduler.async)).constructor
 const defaultScheduler =
   Scheduler.animationFrame
 
