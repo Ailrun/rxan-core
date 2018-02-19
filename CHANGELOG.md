@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Fix `SchedulerConstructor` hack more reliably.
 
+### Miscellaneous
+- Add reference to [rxan-react](https://github.com/Ailrun/rxan-react/) on the readme.
+
 ## [1.1.1] - 2018-02-04
 
 ### Fixed

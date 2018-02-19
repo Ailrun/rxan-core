@@ -2,7 +2,7 @@
 
 [![npm latest version](https://img.shields.io/npm/v/rxan-core/latest.svg)](https://www.npmjs.com/package/rxan-core)
 [![npm total download](https://img.shields.io/npm/dt/rxan-core.svg)](https://www.npmjs.com/package/rxan-core)
-[![github license](https://img.shields.io/github/license/Ailrun/rxan-core.svg)](https://github.com/Ailrun/rxan-core/blob/master/LICENSE)
+[![github license](https://img.shields.io/github/license/Ailrun/rxan-core.svg)](https://github.com/Ailrun/rxan-core/blob/stable/LICENSE)
 [![github latest tag](https://img.shields.io/github/tag/Ailrun/rxan-core.svg)](https://github.com/Ailrun/rxan-core/tags)
 [![github commit from latest](https://img.shields.io/github/commits-since/Ailrun/rxan-core/latest.svg)](https://github.com/Ailrun/rxan-core)
 
@@ -67,7 +67,7 @@ rxanC.during()(500)
   })
 ```
 
-with React
+with React (you can also use [rxan-react](https://github.com/Ailrun/rxan-react/))
 
 ```javascript
 import React, { Component } from 'react'
