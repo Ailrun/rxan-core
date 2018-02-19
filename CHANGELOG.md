@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add `toggle` function
   This function emit true and false periodically.
 
+### Fixed
+- Fix to export `periodOf` function.
+
 ## [1.1.2] - 2018-02-19
 
 ### Fixed
