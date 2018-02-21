@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.1] - 2018-02-20
+
 ### Added
 - Add typing for `toggle` function.
 
@@ -98,6 +100,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - bounce
 
 [Unreleased]: https://github.com/Ailrun/rxan-core
+[1.2.1]: https://github.com/Ailrun/rxan-core/tree/v1.2.1
 [1.2.0]: https://github.com/Ailrun/rxan-core/tree/v1.2.0
 [1.1.2]: https://github.com/Ailrun/rxan-core/tree/v1.1.2
 [1.1.1]: https://github.com/Ailrun/rxan-core/tree/v1.1.1
