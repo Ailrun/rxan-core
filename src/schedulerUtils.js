@@ -1,9 +1,9 @@
-import { Scheduler } from 'rxjs'
+import { async } from 'rxjs/scheduler/async'
+import { animationFrame } from 'rxjs/scheduler/animationFrame'
 
 const SchedulerConstructor =
-  Object.getPrototypeOf(Object.getPrototypeOf(Scheduler.async)).constructor
-const defaultScheduler =
-  Scheduler.animationFrame
+  Object.getPrototypeOf(Object.getPrototypeOf(async)).constructor
+const defaultScheduler = animationFrame
 
 const withDefaultScheduler =
   (f) => (scheduler = defaultScheduler) => f(scheduler)

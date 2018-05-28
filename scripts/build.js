@@ -55,7 +55,17 @@ const inputOptions = {
 
 const globals = {
   'rxjs': 'Rx',
-  'rxjs/Observable': 'Rx',
+
+  'rxjs/observable/concat': 'Rx.Observable.concat',
+  'rxjs/observable/defer': 'Rx.Observable.defer',
+  'rxjs/observable/interval': 'Rx.Observable.interval',
+
+  'rxjs/operators/map': 'Rx.operators.map',
+  'rxjs/operators/take': 'Rx.operators.take',
+  'rxjs/operators/takeWhile': 'Rx.operators.takeWhile',
+  
+  'rxjs/scheduler/animationFrame': 'Rx.Scheduler.animationFrame',
+  'rxjs/scheduler/async': 'Rx.Scheduler.async',
 }
 
 const formatBundleNames = (bundleNames, indentNumber) => {

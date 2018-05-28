@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs/Observable'
-import 'rxjs/add/observable/interval'
-import 'rxjs/add/operator/take'
+import { interval } from 'rxjs/observable/interval'
+import { map } from 'rxjs/operators/map'
+import { take } from 'rxjs/operators/take'
 
 const periodTypeErrorMessage =
   'second argument (period) of toggle should be a number'
@@ -34,9 +34,10 @@ const toggle =
 
     cycles = cycles || Number.POSITIVE_INFINITY
 
-    return Observable.interval(period, scheduler)
-      .map((cycle) => cycle % 2 === 0)
-      .take(cycles)
+    return interval(period, scheduler).pipe(
+      map((cycle) => cycle % 2 === 0),
+      take(cycles),
+    )
   }
 
 export {
