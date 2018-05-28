@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Change operator adding to pipable operators
+
 ## [1.2.1] - 2018-02-20
 
 ### Added
