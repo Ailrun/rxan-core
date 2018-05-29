@@ -1,8 +1,6 @@
-import {
-  Scheduler,
-} from 'rxjs'
 import sinon from 'sinon'
 
+import { Scheduler } from '../src/rxjsUtils'
 import { toggle } from '../src/toggle'
 
 const { animationFrame, asap, async, queue } = Scheduler
