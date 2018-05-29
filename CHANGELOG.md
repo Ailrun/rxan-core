@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.1] - 2018-05-28
+
+### Fixed
+- Fix wrong import for UMD modules
+
+## [1.3.0] - 2018-05-28
+
+### Changed
+- Change operator adding to pipable operators
+
 ## [2.0.0-alpha.5] - 2018-02-20
 
 ### Added
@@ -20,6 +30,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Fix to export `periodOf` function.
 
+## [1.2.1] - 2018-02-20
+
+### Added
+- Add typing for `toggle` function.
+
 ## [2.0.0-alpha.3] - 2018-02-19
 
 ### Fixed
@@ -27,20 +42,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Miscellaneous
 - Add reference to [rxan-react](https://github.com/Ailrun/rxan-react/) on the readme.
-
-## [2.0.0-alpha.1] - 2018-02-10
-
-### Added
-- Update RxJS to v6
-
-### Miscellaneous
-- Fix tests
-- Fix test script
-
-## [1.2.1] - 2018-02-20
-
-### Added
-- Add typing for `toggle` function.
 
 ## [1.2.0] - 2018-02-19
 
@@ -58,6 +59,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Miscellaneous
 - Add reference to [rxan-react](https://github.com/Ailrun/rxan-react/) on the readme.
+
+## [2.0.0-alpha.1] - 2018-02-10
+
+### Added
+- Update RxJS to v6
+
+### Miscellaneous
+- Fix tests
+- Fix test script
 
 ## [1.1.1] - 2018-02-04
 
@@ -135,6 +145,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [2.0.0-alpha.4]: https://github.com/Ailrun/rxan-core/tree/v2.0.0-alpha.4
 [2.0.0-alpha.3]: https://github.com/Ailrun/rxan-core/tree/v2.0.0-alpha.3
 [2.0.0-alpha.1]: https://github.com/Ailrun/rxan-core/tree/v2.0.0-alpha.1
+[1.3.1]: https://github.com/Ailrun/rxan-core/tree/v1.3.1
+[1.3.0]: https://github.com/Ailrun/rxan-core/tree/v1.3.0
 [1.2.1]: https://github.com/Ailrun/rxan-core/tree/v1.2.1
 [1.2.0]: https://github.com/Ailrun/rxan-core/tree/v1.2.0
 [1.1.2]: https://github.com/Ailrun/rxan-core/tree/v1.1.2
