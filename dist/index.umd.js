@@ -1,11 +1,11 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/Observable'), require('rxjs/add/observable/defer'), require('rxjs/add/observable/interval'), require('rxjs/add/operator/map'), require('rxjs/add/operator/concat'), require('rxjs/add/operator/takeWhile'), require('rxjs/add/operator/take')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'rxjs', 'rxjs/Observable', 'rxjs/add/observable/defer', 'rxjs/add/observable/interval', 'rxjs/add/operator/map', 'rxjs/add/operator/concat', 'rxjs/add/operator/takeWhile', 'rxjs/add/operator/take'], factory) :
-	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.Rx,global.Rx));
-}(this, (function (exports,rxjs,Observable) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/scheduler/async'), require('rxjs/scheduler/animationFrame'), require('rxjs/observable/defer'), require('rxjs/observable/interval'), require('rxjs/operators/map'), require('rxjs/observable/concat'), require('rxjs/operators/takeWhile'), require('rxjs/operators/take')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'rxjs/scheduler/async', 'rxjs/scheduler/animationFrame', 'rxjs/observable/defer', 'rxjs/observable/interval', 'rxjs/operators/map', 'rxjs/observable/concat', 'rxjs/operators/takeWhile', 'rxjs/operators/take'], factory) :
+	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.Rx.Scheduler.async,global.Rx.Scheduler.animationFrame,global.Rx.Observable.defer,global.Rx.Observable.interval,global.Rx.operators.map,global.Rx.Observable.concat,global.Rx.operators.takeWhile,global.Rx.operators.take));
+}(this, (function (exports,async,animationFrame,defer,interval,map,concat,takeWhile,take) { 'use strict';
 
-var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(rxjs.Scheduler.async)).constructor;
-var defaultScheduler = rxjs.Scheduler.animationFrame;
+var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(async.async)).constructor;
+var defaultScheduler = animationFrame.animationFrame;
 
 var withDefaultScheduler = function withDefaultScheduler(f) {
   return function () {
@@ -34,12 +34,12 @@ var withScheduler = function withScheduler(f) {
 };
 
 var msElapsed$1 = function msElapsed(scheduler) {
-  return Observable.Observable.defer(function () {
+  return defer.defer(function () {
     var startTime = scheduler.now();
 
-    return Observable.Observable.interval(0, scheduler).map(function () {
+    return interval.interval(0, scheduler).pipe(map.map(function () {
       return scheduler.now() - startTime;
-    });
+    }));
   });
 };
 
@@ -58,11 +58,13 @@ var during$1 = function during(scheduler) {
       throw new RangeError(durationRangeErrorMessage);
     }
 
-    return msElapsed$1(scheduler).map(function (ms) {
+    return msElapsed$1(scheduler).pipe(map.map(function (ms) {
       return ms / duration;
-    }).takeWhile(function (percent) {
+    }), takeWhile.takeWhile(function (percent) {
       return percent < 1;
-    }).concat([1]);
+    }), function (res$) {
+      return concat.concat(res$, [1]);
+    });
   };
 };
 
@@ -96,9 +98,9 @@ var periodOf$1 = function periodOf(scheduler) {
 
     cycles = cycles || Number.POSITIVE_INFINITY;
 
-    return Observable.Observable.interval(period, scheduler).map(function (cycle) {
+    return interval.interval(period, scheduler).pipe(map.map(function (cycle) {
       return cycle + 1;
-    }).take(cycles);
+    }), take.take(cycles));
   };
 };
 
@@ -132,9 +134,9 @@ var toggle$1 = function toggle(scheduler) {
 
     cycles = cycles || Number.POSITIVE_INFINITY;
 
-    return Observable.Observable.interval(period, scheduler).map(function (cycle) {
+    return interval.interval(period, scheduler).pipe(map.map(function (cycle) {
       return cycle % 2 === 0;
-    }).take(cycles);
+    }), take.take(cycles));
   };
 };
 

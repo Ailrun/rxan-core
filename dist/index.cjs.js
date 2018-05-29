@@ -2,17 +2,17 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var rxjs = require('rxjs');
-var Observable = require('rxjs/Observable');
-require('rxjs/add/observable/defer');
-require('rxjs/add/observable/interval');
-require('rxjs/add/operator/map');
-require('rxjs/add/operator/concat');
-require('rxjs/add/operator/takeWhile');
-require('rxjs/add/operator/take');
+var async = require('rxjs/scheduler/async');
+var animationFrame = require('rxjs/scheduler/animationFrame');
+var defer = require('rxjs/observable/defer');
+var interval = require('rxjs/observable/interval');
+var map = require('rxjs/operators/map');
+var concat = require('rxjs/observable/concat');
+var takeWhile = require('rxjs/operators/takeWhile');
+var take = require('rxjs/operators/take');
 
-var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(rxjs.Scheduler.async)).constructor;
-var defaultScheduler = rxjs.Scheduler.animationFrame;
+var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(async.async)).constructor;
+var defaultScheduler = animationFrame.animationFrame;
 
 var withDefaultScheduler = function withDefaultScheduler(f) {
   return function () {
@@ -41,12 +41,12 @@ var withScheduler = function withScheduler(f) {
 };
 
 var msElapsed$1 = function msElapsed(scheduler) {
-  return Observable.Observable.defer(function () {
+  return defer.defer(function () {
     var startTime = scheduler.now();
 
-    return Observable.Observable.interval(0, scheduler).map(function () {
+    return interval.interval(0, scheduler).pipe(map.map(function () {
       return scheduler.now() - startTime;
-    });
+    }));
   });
 };
 
@@ -65,11 +65,13 @@ var during$1 = function during(scheduler) {
       throw new RangeError(durationRangeErrorMessage);
     }
 
-    return msElapsed$1(scheduler).map(function (ms) {
+    return msElapsed$1(scheduler).pipe(map.map(function (ms) {
       return ms / duration;
-    }).takeWhile(function (percent) {
+    }), takeWhile.takeWhile(function (percent) {
       return percent < 1;
-    }).concat([1]);
+    }), function (res$) {
+      return concat.concat(res$, [1]);
+    });
   };
 };
 
@@ -103,9 +105,9 @@ var periodOf$1 = function periodOf(scheduler) {
 
     cycles = cycles || Number.POSITIVE_INFINITY;
 
-    return Observable.Observable.interval(period, scheduler).map(function (cycle) {
+    return interval.interval(period, scheduler).pipe(map.map(function (cycle) {
       return cycle + 1;
-    }).take(cycles);
+    }), take.take(cycles));
   };
 };
 
@@ -139,9 +141,9 @@ var toggle$1 = function toggle(scheduler) {
 
     cycles = cycles || Number.POSITIVE_INFINITY;
 
-    return Observable.Observable.interval(period, scheduler).map(function (cycle) {
+    return interval.interval(period, scheduler).pipe(map.map(function (cycle) {
       return cycle % 2 === 0;
-    }).take(cycles);
+    }), take.take(cycles));
   };
 };
 
