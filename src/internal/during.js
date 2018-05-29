@@ -1,7 +1,5 @@
-import { Observable } from 'rxjs'
-import 'rxjs/add/operator/concat'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/takeWhile'
+import { concat } from 'rxjs'
+import { map, takeWhile } from 'rxjs/operators'
 
 import { msElapsed } from './msElapsed'
 
@@ -20,10 +18,11 @@ const during =
       throw new RangeError(durationRangeErrorMessage)
     }
 
-    return msElapsed(scheduler)
-      .map((ms) => ms / duration)
-      .takeWhile((percent) => percent < 1)
-      .concat([1])
+    return msElapsed(scheduler).pipe(
+      map((ms) => ms / duration),
+      takeWhile((percent) => percent < 1),
+      (res$) => concat(res$, [1]),
+    )
   }
 
 export {

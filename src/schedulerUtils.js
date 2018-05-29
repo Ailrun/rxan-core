@@ -1,9 +1,6 @@
-import { Scheduler } from './rxjsUtils'
+import { Scheduler, animationFrameScheduler } from 'rxjs'
 
-const SchedulerConstructor =
-  Object.getPrototypeOf(Object.getPrototypeOf(Scheduler.async)).constructor
-const defaultScheduler =
-  Scheduler.animationFrame
+const defaultScheduler = animationFrameScheduler
 
 const withDefaultScheduler =
   (f) => (scheduler = defaultScheduler) => f(scheduler)
@@ -16,7 +13,7 @@ const buildSchedulerTypeError = (name) => {
 }
 const withSchedulerChecker =
   (f) => (scheduler) => {
-    if (!(scheduler instanceof SchedulerConstructor)) {
+    if (!(scheduler instanceof Scheduler)) {
       throw buildSchedulerTypeError(f.name)
     }
 

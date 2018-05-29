@@ -1,11 +1,14 @@
+import {
+  animationFrameScheduler,
+  asapScheduler,
+  asyncScheduler,
+  queueScheduler,
+} from 'rxjs'
 import sinon from 'sinon'
 
-import { Scheduler } from '../src/rxjsUtils'
 import {
   withDefaultScheduler, withSchedulerChecker, withScheduler,
 } from '../src/schedulerUtils'
-
-const { async, queue, asap, animationFrame } = Scheduler
 
 describe('schedulerUtils', () => {
   describe('withDefaultScheduler', () => {
@@ -15,7 +18,7 @@ describe('schedulerUtils', () => {
       withDefaultScheduler(fst)()
       expect(fst.calledOnce, 'first argument is not called once')
         .to.be.true
-      expect(fst.lastCall.calledWith(animationFrame), 'first argument is not called with second argument')
+      expect(fst.lastCall.calledWith(animationFrameScheduler), 'first argument is not called with second argument')
         .to.be.true
     })
 
@@ -25,7 +28,7 @@ describe('schedulerUtils', () => {
       withDefaultScheduler(fst)(undefined)
       expect(fst.calledOnce, 'first argument is not called once')
         .to.be.true
-      expect(fst.lastCall.calledWith(animationFrame), 'first argument is not called with second argument')
+      expect(fst.lastCall.calledWith(animationFrameScheduler), 'first argument is not called with second argument')
         .to.be.true
     })
 
@@ -51,39 +54,39 @@ describe('schedulerUtils', () => {
     it('should pass second argument of rxjs scheduler to first argument', () => {
       const fst = sinon.spy()
 
-      withSchedulerChecker(fst)(asap)
+      withSchedulerChecker(fst)(asapScheduler)
       expect(fst.callCount)
         .to.equal(1)
-      expect(fst.lastCall.calledWith(asap))
+      expect(fst.lastCall.calledWith(asapScheduler))
         .to.be.true
 
-      withSchedulerChecker(fst)(animationFrame)
+      withSchedulerChecker(fst)(animationFrameScheduler)
       expect(fst.callCount)
         .to.equal(2)
-      expect(fst.lastCall.calledWith(animationFrame))
+      expect(fst.lastCall.calledWith(animationFrameScheduler))
         .to.be.true
 
-      withSchedulerChecker(fst)(queue)
+      withSchedulerChecker(fst)(queueScheduler)
       expect(fst.callCount)
         .to.equal(3)
-      expect(fst.lastCall.calledWith(queue))
+      expect(fst.lastCall.calledWith(queueScheduler))
         .to.be.true
 
-      withSchedulerChecker(fst)(async)
+      withSchedulerChecker(fst)(asyncScheduler)
       expect(fst.callCount)
         .to.equal(4)
-      expect(fst.lastCall.calledWith(async))
+      expect(fst.lastCall.calledWith(asyncScheduler))
         .to.be.true
     })
 
     it('should not work when first argument is not a function', () => {
-      expect(() => withSchedulerChecker(undefined)(animationFrame))
+      expect(() => withSchedulerChecker(undefined)(animationFrameScheduler))
         .to.throw(TypeError, undefined, 'it does not throw error with undefined')
-      expect(() => withSchedulerChecker(1)(animationFrame))
+      expect(() => withSchedulerChecker(1)(animationFrameScheduler))
         .to.throw(TypeError, undefined, 'it does not throw error with 1')
-      expect(() => withSchedulerChecker(true)(animationFrame))
+      expect(() => withSchedulerChecker(true)(animationFrameScheduler))
         .to.throw(TypeError, undefined, 'it does not throw error with true')
-      expect(() => withSchedulerChecker([2, 3])(animationFrame))
+      expect(() => withSchedulerChecker([2, 3])(animationFrameScheduler))
         .to.throw(TypeError, undefined, 'it does not throw error with [2, 3]')
     })
 
@@ -107,28 +110,28 @@ describe('schedulerUtils', () => {
     it('should pass second argument of rxjs scheduler to first argument', () => {
       const fst = sinon.spy()
 
-      withScheduler(fst)(asap)
+      withScheduler(fst)(asapScheduler)
       expect(fst.callCount)
         .to.equal(1)
-      expect(fst.lastCall.calledWith(asap))
+      expect(fst.lastCall.calledWith(asapScheduler))
         .to.be.true
 
-      withScheduler(fst)(animationFrame)
+      withScheduler(fst)(animationFrameScheduler)
       expect(fst.callCount)
         .to.equal(2)
-      expect(fst.lastCall.calledWith(animationFrame))
+      expect(fst.lastCall.calledWith(animationFrameScheduler))
         .to.be.true
 
-      withScheduler(fst)(queue)
+      withScheduler(fst)(queueScheduler)
       expect(fst.callCount)
         .to.equal(3)
-      expect(fst.lastCall.calledWith(queue))
+      expect(fst.lastCall.calledWith(queueScheduler))
         .to.be.true
 
-      withScheduler(fst)(async)
+      withScheduler(fst)(asyncScheduler)
       expect(fst.callCount)
         .to.equal(4)
-      expect(fst.lastCall.calledWith(async))
+      expect(fst.lastCall.calledWith(asyncScheduler))
         .to.be.true
     })
 
@@ -138,18 +141,18 @@ describe('schedulerUtils', () => {
       withScheduler(fst)(undefined)
       expect(fst.calledOnce, 'first argument is not called once')
         .to.be.true
-      expect(fst.lastCall.calledWith(animationFrame), 'first argument is not called with second argument')
+      expect(fst.lastCall.calledWith(animationFrameScheduler), 'first argument is not called with second argument')
         .to.be.true
     })
 
     it('should not work when first argument is not a function', () => {
-      expect(() => withScheduler(undefined)(animationFrame))
+      expect(() => withScheduler(undefined)(animationFrameScheduler))
         .to.throw(TypeError, undefined, 'it does not throw error with undefined')
-      expect(() => withScheduler(1)(animationFrame))
+      expect(() => withScheduler(1)(animationFrameScheduler))
         .to.throw(TypeError, undefined, 'it does not throw error with 1')
-      expect(() => withScheduler(true)(Scheduler.animationFrame))
+      expect(() => withScheduler(true)(animationFrameScheduler))
         .to.throw(TypeError, undefined, 'it does not throw error with true')
-      expect(() => withScheduler([2, 3])(Scheduler.animationFrame))
+      expect(() => withScheduler([2, 3])(animationFrameScheduler))
         .to.throw(TypeError, undefined, 'it does not throw error with [2, 3]')
     })
 

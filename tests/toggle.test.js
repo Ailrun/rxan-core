@@ -1,9 +1,12 @@
+import {
+  animationFrameScheduler,
+  asapScheduler,
+  asyncScheduler,
+  queueScheduler,
+} from 'rxjs'
 import sinon from 'sinon'
 
-import { Scheduler } from '../src/rxjsUtils'
 import { toggle } from '../src/toggle'
-
-const { animationFrame, asap, async, queue } = Scheduler
 
 describe('toggle', () => {
   const sandbox = sinon.createSandbox()
@@ -14,10 +17,10 @@ describe('toggle', () => {
     })
     sandbox.clock.tick(0)
 
-    sandbox.stub(animationFrame, 'now').callsFake(() => 0)
-    sandbox.stub(asap, 'now').callsFake(Date.now)
-    sandbox.stub(async, 'now').callsFake(Date.now)
-    sandbox.stub(queue, 'now').callsFake(Date.now)
+    sandbox.stub(animationFrameScheduler, 'now').callsFake(() => 0)
+    sandbox.stub(asapScheduler, 'now').callsFake(Date.now)
+    sandbox.stub(asyncScheduler, 'now').callsFake(Date.now)
+    sandbox.stub(queueScheduler, 'now').callsFake(Date.now)
   })
 
   afterEach(() => {
@@ -52,16 +55,16 @@ describe('toggle', () => {
     const subscriptions = []
 
     expect(() => {
-      subscriptions.push(toggle(queue)(100).subscribe(sandbox.spy()))
+      subscriptions.push(toggle(queueScheduler)(100).subscribe(sandbox.spy()))
     }).to.not.throw()
     expect(() => {
-      subscriptions.push(toggle(asap)(100).subscribe(sandbox.spy()))
+      subscriptions.push(toggle(asapScheduler)(100).subscribe(sandbox.spy()))
     }).to.not.throw()
     expect(() => {
-      subscriptions.push(toggle(animationFrame)(100).subscribe(sandbox.spy()))
+      subscriptions.push(toggle(animationFrameScheduler)(100).subscribe(sandbox.spy()))
     }).to.not.throw()
     expect(() => {
-      subscriptions.push(toggle(async)(100).subscribe(sandbox.spy()))
+      subscriptions.push(toggle(asyncScheduler)(100).subscribe(sandbox.spy()))
     }).to.not.throw()
 
     sandbox.clock.tick(300)
@@ -101,7 +104,7 @@ describe('toggle', () => {
 
   it('should emit true and false infinitely when third argument is undefined', () => {
     const next = sandbox.spy()
-    let subscription = toggle(async)(100).subscribe(next)
+    let subscription = toggle(asyncScheduler)(100).subscribe(next)
     let lastValue = true;
     let lastCycle = 0
 
@@ -125,7 +128,7 @@ describe('toggle', () => {
     const next = sandbox.spy()
     const complete = sandbox.spy()
     const cycles = 3
-    let subscription = toggle(async)(100, cycles).subscribe(next, undefined, complete)
+    let subscription = toggle(asyncScheduler)(100, cycles).subscribe(next, undefined, complete)
 
     sandbox.clock.tick(300)
 

@@ -1,9 +1,12 @@
+import {
+  animationFrameScheduler,
+  asapScheduler,
+  asyncScheduler,
+  queueScheduler,
+} from 'rxjs'
 import sinon from 'sinon'
 
-import { Scheduler } from '../src/rxjsUtils'
 import { periodOf } from '../src/periodOf'
-
-const { animationFrame, asap, async, queue } = Scheduler
 
 describe('periodOf', () => {
   const sandbox = sinon.createSandbox()
@@ -14,8 +17,8 @@ describe('periodOf', () => {
     })
     sandbox.clock.tick(0)
 
-    sandbox.stub(animationFrame, 'now').callsFake(() => 0)
-    sandbox.stub(asap, 'now').callsFake(Date.now)
+    sandbox.stub(animationFrameScheduler, 'now').callsFake(() => 0)
+    sandbox.stub(asapScheduler, 'now').callsFake(Date.now)
     /**
      * @fixme current async does not work well with sinon.
      * sinon does not work well with
@@ -24,7 +27,7 @@ describe('periodOf', () => {
     /*
     sandbox.stub(async, 'now').callsFake(Date.now)
     */
-    sandbox.stub(queue, 'now').callsFake(Date.now)
+    sandbox.stub(queueScheduler, 'now').callsFake(Date.now)
   })
 
   afterEach(() => {
@@ -59,13 +62,13 @@ describe('periodOf', () => {
     const subscriptions = []
 
     expect(() => {
-      subscriptions.push(periodOf(queue)(100).subscribe(sandbox.spy()))
+      subscriptions.push(periodOf(queueScheduler)(100).subscribe(sandbox.spy()))
     }).to.not.throw()
     expect(() => {
-      subscriptions.push(periodOf(asap)(100).subscribe(sandbox.spy()))
+      subscriptions.push(periodOf(asapScheduler)(100).subscribe(sandbox.spy()))
     }).to.not.throw()
     expect(() => {
-      subscriptions.push(periodOf(animationFrame)(100).subscribe(sandbox.spy()))
+      subscriptions.push(periodOf(animationFrameScheduler)(100).subscribe(sandbox.spy()))
     }).to.not.throw()
     /**
      * @fixme current async does not work well with sinon.
@@ -115,7 +118,7 @@ describe('periodOf', () => {
 
   it('should emit values from 1 to infinite when third argument is undefined', () => {
     const next = sandbox.spy()
-    let subscription = periodOf(asap)(100).subscribe(next)
+    let subscription = periodOf(asapScheduler)(100).subscribe(next)
     let lastCycle = 0
 
     for (let i = 0; i < 100; i++) {
@@ -137,7 +140,7 @@ describe('periodOf', () => {
     const next = sandbox.spy()
     const complete = sandbox.spy()
     const cycles = 3
-    let subscription = periodOf(asap)(100, cycles).subscribe(next, undefined, complete)
+    let subscription = periodOf(asapScheduler)(100, cycles).subscribe(next, undefined, complete)
 
     sandbox.clock.tick(300)
 

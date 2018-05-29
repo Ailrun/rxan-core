@@ -1,9 +1,13 @@
+import {
+  animationFrameScheduler,
+  asapScheduler,
+  asyncScheduler,
+  queueScheduler,
+} from 'rxjs'
 import sinon from 'sinon'
+import createStub from 'raf-stub';
 
-import { Scheduler } from '../src/rxjsUtils'
 import { msElapsed } from '../src/msElapsed'
-
-const { animationFrame, asap, async } = Scheduler
 
 describe('msElapsed', () => {
   const sandbox = sinon.createSandbox()
@@ -14,15 +18,17 @@ describe('msElapsed', () => {
     })
     sandbox.clock.tick(0)
 
-    sandbox.stub(animationFrame, 'now').callsFake(Date.now)
-    sandbox.stub(asap, 'now').callsFake(Date.now)
+    const stub = createStub();
+    sandbox.stub(global, 'requestAnimationFrame').callsFake(stub.add)
+    sandbox.stub(animationFrameScheduler, 'now').callsFake(Date.now)
+    sandbox.stub(asapScheduler, 'now').callsFake(Date.now)
     /**
      * @fixme current async does not work well with sinon.
      * sinon does not work well with
      * `setInterval(() => {}, 0)`
      */
     /*
-    sandbox.stub(async, 'now').callsFake(Date.now)
+    sandbox.stub(asyncScheduler, 'now').callsFake(Date.now)
     */
   })
 
@@ -46,10 +52,10 @@ describe('msElapsed', () => {
     const subscriptions = []
 
     expect(() => {
-      subscriptions.push(msElapsed(asap).subscribe(sandbox.spy()))
+      subscriptions.push(msElapsed(asapScheduler).subscribe(sandbox.spy()))
     }).to.not.throw()
     expect(() => {
-      subscriptions.push(msElapsed(animationFrame).subscribe(sandbox.spy()))
+      subscriptions.push(msElapsed(animationFrameScheduler).subscribe(sandbox.spy()))
     }).to.not.throw()
     /**
      * @fixme current async does not work well with sinon.
@@ -58,7 +64,7 @@ describe('msElapsed', () => {
      */
     /*
     expect(() => {
-      subscriptions.push(msElapsed(async).subscribe(sandbox.spy()))
+      subscriptions.push(msElapsed(asyncScheduler).subscribe(sandbox.spy()))
     }).to.not.throw()
     */
 
@@ -77,9 +83,9 @@ describe('msElapsed', () => {
     const useTimes = sandbox.spy()
 
     const subscription =
-      msElapsed(asap).subscribe(useTimes)
+      msElapsed(asapScheduler).subscribe(useTimes)
 
-    asap.flush()
+    asapScheduler.flush()
 
     subscription.unsubscribe()
     expect(useTimes.callCount).to.be.least(1)
@@ -89,11 +95,11 @@ describe('msElapsed', () => {
     const useTimes = sandbox.spy()
 
     const subscription =
-      msElapsed(asap).subscribe(useTimes)
+      msElapsed(asapScheduler).subscribe(useTimes)
 
-    asap.flush()
+    asapScheduler.flush()
     sandbox.clock.tick(1000)
-    asap.flush()
+    asapScheduler.flush()
 
     subscription.unsubscribe()
     expect(useTimes.lastCall.args[0]).to.be.closeTo(Date.now(), 1)

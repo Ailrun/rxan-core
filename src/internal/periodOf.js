@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs'
-import 'rxjs/add/observable/interval'
-import 'rxjs/add/operator/take'
+import { interval } from 'rxjs'
+import { map, take } from 'rxjs/operators'
 
 const periodTypeErrorMessage =
   'second argument (period) of periodOf should be a number'
@@ -34,9 +33,10 @@ const periodOf =
 
     cycles = cycles || Number.POSITIVE_INFINITY
 
-    return Observable.interval(period, scheduler)
-      .map((cycle) => cycle + 1)
-      .take(cycles)
+    return interval(period, scheduler).pipe(
+      map((cycle) => cycle + 1),
+      take(cycles),
+    )
   }
 
 export {

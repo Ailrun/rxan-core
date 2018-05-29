@@ -54,8 +54,8 @@ const inputOptions = {
 }
 
 const globals = {
-  'rxjs': 'Rx',
-  'rxjs/Observable': 'Rx',
+  'rxjs': 'rxjs',
+  'rxjs/operators': 'rxjs.operators',
 }
 
 const formatBundleNames = (bundleNames, indentNumber) => {

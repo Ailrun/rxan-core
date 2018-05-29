@@ -1,15 +1,14 @@
-import { Observable } from 'rxjs'
-import 'rxjs/add/observable/defer'
-import 'rxjs/add/observable/interval'
-import 'rxjs/add/operator/map'
+import { defer, interval } from 'rxjs'
+import { map } from 'rxjs/operators'
 
 const msElapsed =
   (scheduler) =>
-    Observable.defer(() => {
+    defer(() => {
       const startTime = scheduler.now()
 
-      return Observable.interval(0, scheduler)
-        .map(() => scheduler.now() - startTime)
+      return interval(0, scheduler).pipe(
+        map(() => scheduler.now() - startTime),
+      )
     })
 
 export {

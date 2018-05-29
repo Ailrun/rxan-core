@@ -30,6 +30,7 @@ const registerDir = (dir) => {
 
 registerDir(testsDir)
 
+global.requestAnimationFrame = () => {};
 mocha.run((failures) => {
   process.on('exit', function () {
     process.exit(failures)

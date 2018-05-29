@@ -1,9 +1,13 @@
+import {
+  animationFrameScheduler,
+  asapScheduler,
+  asyncScheduler,
+  queueScheduler,
+} from 'rxjs'
 import sinon from 'sinon'
+import createStub from 'raf-stub';
 
-import { Scheduler } from '../src/rxjsUtils'
 import { during } from '../src/during'
-
-const { animationFrame, asap, async, queue } = Scheduler
 
 describe('during', () => {
   const sandbox = sinon.createSandbox()
@@ -14,15 +18,17 @@ describe('during', () => {
     })
     sandbox.clock.tick(0)
 
-    sandbox.stub(animationFrame, 'now').callsFake(Date.now)
-    sandbox.stub(asap, 'now').callsFake(Date.now)
+    const stub = createStub();
+    sandbox.stub(global, 'requestAnimationFrame').callsFake(stub.add)
+    sandbox.stub(animationFrameScheduler, 'now').callsFake(Date.now)
+    sandbox.stub(asapScheduler, 'now').callsFake(Date.now)
     /**
      * @fixme current async does not work well with sinon.
      * sinon does not work well with
      * `setInterval(() => {}, 0)`
      */
     /*
-    sandbox.stub(async, 'now').callsFake(Date.now)
+    sandbox.stub(asyncScheduler, 'now').callsFake(Date.now)
     */
   })
 
@@ -40,10 +46,10 @@ describe('during', () => {
 
   it('should work with any rxjs scheduler except Scheduler.queue', () => {
     expect(() => {
-      during(asap)(200).subscribe(sandbox.spy())
+      during(asapScheduler)(200).subscribe(sandbox.spy())
     }).to.not.throw()
     expect(() => {
-      during(animationFrame)(200).subscribe(sandbox.spy())
+      during(animationFrameScheduler)(200).subscribe(sandbox.spy())
     }).to.not.throw()
     /**
      * @fixme current async does not work well with sinon.
@@ -52,7 +58,7 @@ describe('during', () => {
      */
     /*
     expect(() => {
-      during(async)(200).subscribe(sandbox.spy())
+      during(asyncScheduler)(200).subscribe(sandbox.spy())
     }).to.not.throw()
     */
 
@@ -78,11 +84,11 @@ describe('during', () => {
   it('should emit value from 0 to 1', () => {
     const usePercent = sandbox.spy()
 
-    during(asap)(500).subscribe(usePercent)
+    during(asapScheduler)(500).subscribe(usePercent)
 
-    asap.flush()
+    asapScheduler.flush()
     sandbox.clock.tick(500)
-    asap.flush()
+    asapScheduler.flush()
 
     let firstValue
     let lastValue
