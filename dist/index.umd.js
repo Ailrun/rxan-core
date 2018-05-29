@@ -1,23 +1,10 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/add/observable/defer'), require('rxjs/add/observable/interval'), require('rxjs/add/operator/map'), require('rxjs/add/operator/concat'), require('rxjs/add/operator/takeWhile'), require('rxjs/add/operator/take')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'rxjs', 'rxjs/add/observable/defer', 'rxjs/add/observable/interval', 'rxjs/add/operator/map', 'rxjs/add/operator/concat', 'rxjs/add/operator/takeWhile', 'rxjs/add/operator/take'], factory) :
-	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.Rx));
-}(this, (function (exports,rxjs) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'rxjs', 'rxjs/operators'], factory) :
+	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.rxjs,global.rxjs.operators));
+}(this, (function (exports,rxjs,operators) { 'use strict';
 
-var asap = rxjs.Scheduler.asapScheduler ? rxjs.Scheduler.asapScheduler : rxjs.Scheduler.asap;
-var async = rxjs.Scheduler.asyncScheduler ? rxjs.Scheduler.asyncScheduler : rxjs.Scheduler.async;
-var queue = rxjs.Scheduler.queueScheduler ? rxjs.Scheduler.queueScheduler : rxjs.Scheduler.queue;
-var animationFrame = rxjs.Scheduler.animationFrameScheduler ? rxjs.Scheduler.animationFrameScheduler : rxjs.Scheduler.animationFrame;
-
-var Scheduler$1 = {
-  asap: asap,
-  async: async,
-  queue: queue,
-  animationFrame: animationFrame
-};
-
-var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(Scheduler$1.async)).constructor;
-var defaultScheduler = Scheduler$1.animationFrame;
+var defaultScheduler = rxjs.animationFrameScheduler;
 
 var withDefaultScheduler = function withDefaultScheduler(f) {
   return function () {
@@ -33,7 +20,7 @@ var buildSchedulerTypeError = function buildSchedulerTypeError(name) {
 };
 var withSchedulerChecker = function withSchedulerChecker(f) {
   return function (scheduler) {
-    if (!(scheduler instanceof SchedulerConstructor)) {
+    if (!(scheduler instanceof rxjs.Scheduler)) {
       throw buildSchedulerTypeError(f.name);
     }
 
@@ -46,12 +33,12 @@ var withScheduler = function withScheduler(f) {
 };
 
 var msElapsed$1 = function msElapsed(scheduler) {
-  return rxjs.Observable.defer(function () {
+  return rxjs.defer(function () {
     var startTime = scheduler.now();
 
-    return rxjs.Observable.interval(0, scheduler).map(function () {
+    return rxjs.interval(0, scheduler).pipe(operators.map(function () {
       return scheduler.now() - startTime;
-    });
+    }));
   });
 };
 
@@ -70,11 +57,13 @@ var during$1 = function during(scheduler) {
       throw new RangeError(durationRangeErrorMessage);
     }
 
-    return msElapsed$1(scheduler).map(function (ms) {
+    return msElapsed$1(scheduler).pipe(operators.map(function (ms) {
       return ms / duration;
-    }).takeWhile(function (percent) {
+    }), operators.takeWhile(function (percent) {
       return percent < 1;
-    }).concat([1]);
+    }), function (res$) {
+      return rxjs.concat(res$, [1]);
+    });
   };
 };
 
@@ -108,9 +97,9 @@ var periodOf$1 = function periodOf(scheduler) {
 
     cycles = cycles || Number.POSITIVE_INFINITY;
 
-    return rxjs.Observable.interval(period, scheduler).map(function (cycle) {
+    return rxjs.interval(period, scheduler).pipe(operators.map(function (cycle) {
       return cycle + 1;
-    }).take(cycles);
+    }), operators.take(cycles));
   };
 };
 
@@ -144,9 +133,9 @@ var toggle$1 = function toggle(scheduler) {
 
     cycles = cycles || Number.POSITIVE_INFINITY;
 
-    return rxjs.Observable.interval(period, scheduler).map(function (cycle) {
+    return rxjs.interval(period, scheduler).pipe(operators.map(function (cycle) {
       return cycle % 2 === 0;
-    }).take(cycles);
+    }), operators.take(cycles));
   };
 };
 

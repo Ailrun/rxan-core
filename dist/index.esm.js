@@ -1,25 +1,7 @@
-import { Observable, Scheduler } from 'rxjs';
-import 'rxjs/add/observable/defer';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/concat';
-import 'rxjs/add/operator/takeWhile';
-import 'rxjs/add/operator/take';
+import { Scheduler, animationFrameScheduler, concat, defer, interval } from 'rxjs';
+import { map, take, takeWhile } from 'rxjs/operators';
 
-var asap = Scheduler.asapScheduler ? Scheduler.asapScheduler : Scheduler.asap;
-var async = Scheduler.asyncScheduler ? Scheduler.asyncScheduler : Scheduler.async;
-var queue = Scheduler.queueScheduler ? Scheduler.queueScheduler : Scheduler.queue;
-var animationFrame = Scheduler.animationFrameScheduler ? Scheduler.animationFrameScheduler : Scheduler.animationFrame;
-
-var Scheduler$1 = {
-  asap: asap,
-  async: async,
-  queue: queue,
-  animationFrame: animationFrame
-};
-
-var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(Scheduler$1.async)).constructor;
-var defaultScheduler = Scheduler$1.animationFrame;
+var defaultScheduler = animationFrameScheduler;
 
 var withDefaultScheduler = function withDefaultScheduler(f) {
   return function () {
@@ -35,7 +17,7 @@ var buildSchedulerTypeError = function buildSchedulerTypeError(name) {
 };
 var withSchedulerChecker = function withSchedulerChecker(f) {
   return function (scheduler) {
-    if (!(scheduler instanceof SchedulerConstructor)) {
+    if (!(scheduler instanceof Scheduler)) {
       throw buildSchedulerTypeError(f.name);
     }
 
@@ -48,12 +30,12 @@ var withScheduler = function withScheduler(f) {
 };
 
 var msElapsed$1 = function msElapsed(scheduler) {
-  return Observable.defer(function () {
+  return defer(function () {
     var startTime = scheduler.now();
 
-    return Observable.interval(0, scheduler).map(function () {
+    return interval(0, scheduler).pipe(map(function () {
       return scheduler.now() - startTime;
-    });
+    }));
   });
 };
 
@@ -72,11 +54,13 @@ var during$1 = function during(scheduler) {
       throw new RangeError(durationRangeErrorMessage);
     }
 
-    return msElapsed$1(scheduler).map(function (ms) {
+    return msElapsed$1(scheduler).pipe(map(function (ms) {
       return ms / duration;
-    }).takeWhile(function (percent) {
+    }), takeWhile(function (percent) {
       return percent < 1;
-    }).concat([1]);
+    }), function (res$) {
+      return concat(res$, [1]);
+    });
   };
 };
 
@@ -110,9 +94,9 @@ var periodOf$1 = function periodOf(scheduler) {
 
     cycles = cycles || Number.POSITIVE_INFINITY;
 
-    return Observable.interval(period, scheduler).map(function (cycle) {
+    return interval(period, scheduler).pipe(map(function (cycle) {
       return cycle + 1;
-    }).take(cycles);
+    }), take(cycles));
   };
 };
 
@@ -146,9 +130,9 @@ var toggle$1 = function toggle(scheduler) {
 
     cycles = cycles || Number.POSITIVE_INFINITY;
 
-    return Observable.interval(period, scheduler).map(function (cycle) {
+    return interval(period, scheduler).pipe(map(function (cycle) {
       return cycle % 2 === 0;
-    }).take(cycles);
+    }), take(cycles));
   };
 };
 
