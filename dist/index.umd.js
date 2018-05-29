@@ -1,7 +1,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/scheduler/async'), require('rxjs/scheduler/animationFrame'), require('rxjs/observable/defer'), require('rxjs/observable/interval'), require('rxjs/operators/map'), require('rxjs/observable/concat'), require('rxjs/operators/takeWhile'), require('rxjs/operators/take')) :
 	typeof define === 'function' && define.amd ? define(['exports', 'rxjs/scheduler/async', 'rxjs/scheduler/animationFrame', 'rxjs/observable/defer', 'rxjs/observable/interval', 'rxjs/operators/map', 'rxjs/observable/concat', 'rxjs/operators/takeWhile', 'rxjs/operators/take'], factory) :
-	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.Rx.Scheduler.async,global.Rx.Scheduler.animationFrame,global.Rx.Observable.defer,global.Rx.Observable.interval,global.Rx.operators.map,global.Rx.Observable.concat,global.Rx.operators.takeWhile,global.Rx.operators.take));
+	(factory((global.rxan = global.rxan || {}, global.rxan.core = {}),global.Rx.Scheduler,global.Rx.Scheduler,global.Rx.Observable,global.Rx.Observable,global.Rx.operators,global.Rx.Observable,global.Rx.operators,global.Rx.operators));
 }(this, (function (exports,async,animationFrame,defer,interval,map,concat,takeWhile,take) { 'use strict';
 
 var SchedulerConstructor = Object.getPrototypeOf(Object.getPrototypeOf(async.async)).constructor;
