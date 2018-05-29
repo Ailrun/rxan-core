@@ -15,4 +15,5 @@ select branch_type in "stable" "master"; do
     read -p "Ready to push to upstream. [Enter] to continue"
     git push Ailrun $branch_type
     git push Ailrun --tags
+    break;
 done
