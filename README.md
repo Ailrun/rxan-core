@@ -61,15 +61,16 @@ with jQuery
 ```javascript
 const $ = require('jQuery')
 const rxanC = require('rxan-core')
-require('rxjs/add/operators/map')
+const map = require('rxjs/operators').map
 
 const target = $('#target')
 
 // Make animation for 500 ms. It generates value from 0 to 1.
-rxanC.during()(500)
-  .map(function (percent) {
+rxanC.during()(500).pipe(
+  map(function (percent) {
     return percent * 100                // mapping 0~1 to 0~100
   })
+)
   .subscribe(function (marginTop) {
     target.css('marginTop', marginTop)  // assign 0~100 to marginTop of target
   })
@@ -90,8 +91,9 @@ class Example extends Component {
       marginTop: 0
     }
 
-    this.subscription = during()(500)
-      .map((percent) => percent * 100) // mapping 0~1 to 0~100
+    this.subscription = during()(500).pipe(
+      map((percent) => percent * 100) // mapping 0~1 to 0~100
+    )
       .subscribe((marginTop) => {
         this.setState({
           marginTop: marginTop         // assign 0~100 to state.marginTop
