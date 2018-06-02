@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Fix wrong imports in type definition
+
 ## [2.0.0] - 2018-05-28
 
 ### Changed

@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs/Observable'
-import { Scheduler } from 'rxjs/Scheduler'
+import { Observable, Scheduler } from 'rxjs'
 
 declare namespace Rxan {
   const msElasped: (scheduler?: Scheduler) => Observable<number>
