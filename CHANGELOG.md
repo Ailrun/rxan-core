@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.2] - 2018-06-02
+
 ### Fixed
 - Fix wrong imports in type definition
 
@@ -152,6 +154,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - bounce
 
 [Unreleased]: https://github.com/Ailrun/rxan-core
+[2.0.2]: https://github.com/Ailrun/rxan-core/tree/v2.0.2
 [2.0.0]: https://github.com/Ailrun/rxan-core/tree/v2.0.0
 [2.0.0-alpha.5]: https://github.com/Ailrun/rxan-core/tree/v2.0.0-alpha.5
 [2.0.0-alpha.4]: https://github.com/Ailrun/rxan-core/tree/v2.0.0-alpha.4
