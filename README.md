@@ -42,9 +42,9 @@ You should install [RxJS](http://reactivex.io/rxjs/) in your project to use this
 ## How to install ##
 
 ```shell
-npm install rxan-core
+npm install rxan-core@^1
 # To install RxJS too,
-npm install rxjs
+npm install rxjs@^5
 ```
 
 ## How to use ##
