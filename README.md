@@ -9,7 +9,7 @@
 Core package for rxan
 
 ## FOR RXJS@^5 SUPPORTS
-This is **alpha** version of rxan-core supporting `rxjs@^6`.
+This version is for supporting `rxjs@^6`.
 
 To see stable version that supports `rxjs@^5`, please check [stable branch].
 
@@ -49,9 +49,9 @@ You should install [RxJS](http://reactivex.io/rxjs/) in your project to use this
 ## How to install ##
 
 ```shell
-npm install rxan-core@alpha
+npm install rxan-core
 # To install RxJS too,
-npm install rxjs@alpha
+npm install rxjs
 ```
 
 ## How to use ##
