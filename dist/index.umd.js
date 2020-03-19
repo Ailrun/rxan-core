@@ -14,10 +14,10 @@
   };
 
   var buildSchedulerTypeError = function buildSchedulerTypeError(name) {
-    var errorMessage = 'scheduler parameter for ' + name + ' is not an instance of Scheduler';
-
+    var errorMessage = "scheduler parameter for ".concat(name, " is not an instance of Scheduler");
     return new TypeError(errorMessage);
   };
+
   var withSchedulerChecker = function withSchedulerChecker(f) {
     return function (scheduler) {
       if (!(scheduler instanceof rxjs.Scheduler)) {
@@ -35,7 +35,6 @@
   var msElapsed = function msElapsed(scheduler) {
     return rxjs.defer(function () {
       var startTime = scheduler.now();
-
       return rxjs.interval(0, scheduler).pipe(operators.map(function () {
         return scheduler.now() - startTime;
       }));
@@ -71,7 +70,6 @@
 
   var periodTypeErrorMessage = 'second argument (period) of periodOf should be a number';
   var periodRangeErrorMessage = 'second argument (period) of periodOf should be a positive number';
-
   var cyclesTypeErrorMessage = 'third argument (cycles) of periodOf should be undefined or a number';
   var cyclesRangeErrorMessage = 'third argument (cycles) of periodOf should be a positive number';
 
@@ -96,7 +94,6 @@
       }
 
       cycles = cycles || Number.POSITIVE_INFINITY;
-
       return rxjs.interval(period, scheduler).pipe(operators.map(function (cycle) {
         return cycle + 1;
       }), operators.take(cycles));
@@ -107,7 +104,6 @@
 
   var periodTypeErrorMessage$1 = 'second argument (period) of toggle should be a number';
   var periodRangeErrorMessage$1 = 'second argument (period) of toggle should be a positive number';
-
   var cyclesTypeErrorMessage$1 = 'third argument (cycles) of toggle should be undefined or a number';
   var cyclesRangeErrorMessage$1 = 'third argument (cycles) of toggle should be a positive number';
 
@@ -132,7 +128,6 @@
       }
 
       cycles = cycles || Number.POSITIVE_INFINITY;
-
       return rxjs.interval(period, scheduler).pipe(operators.map(function (cycle) {
         return cycle % 2 === 0;
       }), operators.take(cycles));
@@ -142,13 +137,12 @@
   var toggle$1 = withScheduler(toggle);
 
   var buildRangeError = function buildRangeError(name) {
-    var errorMessage = "input of " + name + " should be smaller than 1, and larger than 0";
-
+    var errorMessage = "input of ".concat(name, " should be smaller than 1, and larger than 0");
     return new RangeError(errorMessage);
   };
+
   var buildTypeError = function buildTypeError() {
     var errorMessage = "input of withDomainChecker should have in, out, inout property.";
-
     return new TypeError(errorMessage);
   };
 
@@ -161,16 +155,16 @@
       return f(x);
     };
   };
+
   var withDomainChecker = function withDomainChecker(f) {
-    if (!f.in || !f.out || !f.inout) {
+    if (!f["in"] || !f.out || !f.inout) {
       throw buildTypeError();
     }
 
     var newF = withDomainCheckerImpl(f);
-    newF.in = withDomainCheckerImpl(f.in);
+    newF["in"] = withDomainCheckerImpl(f["in"]);
     newF.out = withDomainCheckerImpl(f.out);
     newF.inout = withDomainCheckerImpl(f.inout);
-
     return newF;
   };
 
@@ -179,6 +173,7 @@
       return 1 - f(1 - x);
     };
   };
+
   var asEaseInOut = function asEaseInOut(f) {
     return function (x) {
       return x < 0.5 ? f(2 * x) / 2 : 1 - f(2 * (1 - x)) / 2;
@@ -189,7 +184,7 @@
     return x;
   };
 
-  linear.in = linear;
+  linear["in"] = linear;
   linear.out = asEaseOut(linear);
   linear.inout = asEaseInOut(linear);
 
@@ -197,7 +192,7 @@
     return x * x;
   };
 
-  quadratic.in = quadratic;
+  quadratic["in"] = quadratic;
   quadratic.out = asEaseOut(quadratic);
   quadratic.inout = asEaseInOut(quadratic);
 
@@ -205,7 +200,7 @@
     return x * x * x;
   };
 
-  cubic.in = cubic;
+  cubic["in"] = cubic;
   cubic.out = asEaseOut(cubic);
   cubic.inout = asEaseInOut(cubic);
 
@@ -213,10 +208,12 @@
     return 1 - Math.cos(x * Math.PI / 2);
   };
 
-  sine.in = sine;
+  sine["in"] = sine;
+
   sine.out = function (x) {
     return Math.sin(x * Math.PI / 2);
   };
+
   sine.inout = function (x) {
     return (1 - Math.cos(x * Math.PI)) / 2;
   };
@@ -225,7 +222,7 @@
     return x === 0 ? 0 : Math.pow(2, 10 * (x - 1));
   };
 
-  exponential.in = exponential;
+  exponential["in"] = exponential;
   exponential.out = asEaseOut(exponential);
   exponential.inout = asEaseInOut(exponential);
 
@@ -233,12 +230,11 @@
       pow = Math.pow,
       sin = Math.sin;
 
-
   var elastic = function elastic(t) {
     return t === 0 ? 0 : pow(2, 10 * (t - 1)) * sin(t * (13 / 2) * PI);
   };
 
-  elastic.in = elastic;
+  elastic["in"] = elastic;
   elastic.out = asEaseOut(elastic);
   elastic.inout = asEaseInOut(elastic);
 
@@ -246,7 +242,7 @@
     return 1 - Math.sqrt(1 - t * t);
   };
 
-  circle.in = circle;
+  circle["in"] = circle;
   circle.out = asEaseOut(circle);
   circle.inout = asEaseInOut(circle);
 
@@ -254,7 +250,7 @@
     return t * t * (Math.E * t - Math.E + 1);
   };
 
-  back.in = back;
+  back["in"] = back;
   back.out = asEaseOut(back);
   back.inout = asEaseInOut(back);
 
