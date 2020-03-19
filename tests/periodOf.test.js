@@ -12,9 +12,7 @@ describe('periodOf', () => {
   const sandbox = sinon.createSandbox()
 
   beforeEach(() => {
-    sandbox.useFakeTimers({
-      now: 0,
-    })
+    sandbox.useFakeTimers()
     sandbox.clock.tick(0)
 
     sandbox.stub(animationFrameScheduler, 'now').callsFake(() => 0)
@@ -130,7 +128,7 @@ describe('periodOf', () => {
       })
 
       expect(lastCycle).to.equal(3 * (i + 1))
-      next.reset()
+      next.resetHistory()
     }
 
     subscription.unsubscribe()

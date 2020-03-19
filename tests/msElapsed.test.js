@@ -13,12 +13,10 @@ describe('msElapsed', () => {
   const sandbox = sinon.createSandbox()
 
   beforeEach(() => {
-    sandbox.useFakeTimers({
-      now: 0,
-    })
+    sandbox.useFakeTimers()
     sandbox.clock.tick(0)
 
-    const stub = createStub();
+    const stub = createStub(undefined, Date.now())
     sandbox.stub(global, 'requestAnimationFrame').callsFake(stub.add)
     sandbox.stub(animationFrameScheduler, 'now').callsFake(Date.now)
     sandbox.stub(asapScheduler, 'now').callsFake(Date.now)
