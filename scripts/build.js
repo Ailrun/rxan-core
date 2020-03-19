@@ -2,7 +2,6 @@ const path = require('path')
 const process = require('process')
 const util = require('util')
 
-const babelrc = require('babelrc-rollup').default
 const chalk = require('chalk')
 const rimraf = require('rimraf')
 const { rollup } = require('rollup')
@@ -41,12 +40,12 @@ const inputOptions = {
   },
   dev: {
     plugins: [
-      babel(babelrc()),
+      babel(),
     ],
   },
   prod: {
     plugins: [
-      babel(babelrc()),
+      babel(),
       terser(),
     ],
   },

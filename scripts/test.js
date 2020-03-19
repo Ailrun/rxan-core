@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const process = require('process')
 
-require('babel-register')
+require('@babel/register')
 require('chai/register-expect')
 const Mocha = require('mocha')
 
