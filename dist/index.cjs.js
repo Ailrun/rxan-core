@@ -33,7 +33,7 @@ var withScheduler = function withScheduler(f) {
   return withDefaultScheduler(withSchedulerChecker(f));
 };
 
-var msElapsed$1 = function msElapsed(scheduler) {
+var msElapsed = function msElapsed(scheduler) {
   return rxjs.defer(function () {
     var startTime = scheduler.now();
 
@@ -43,12 +43,12 @@ var msElapsed$1 = function msElapsed(scheduler) {
   });
 };
 
-var msElapsed$$1 = withScheduler(msElapsed$1);
+var msElapsed$1 = withScheduler(msElapsed);
 
 var durationTypeErrorMessage = 'second argument (duration) of during should be a number';
 var durationRangeErrorMessage = 'second argument (duration) of during should be a positive number';
 
-var during$1 = function during(scheduler) {
+var during = function during(scheduler) {
   return function (duration) {
     if (typeof duration !== 'number') {
       throw new TypeError(durationTypeErrorMessage);
@@ -58,7 +58,7 @@ var during$1 = function during(scheduler) {
       throw new RangeError(durationRangeErrorMessage);
     }
 
-    return msElapsed$1(scheduler).pipe(operators.map(function (ms) {
+    return msElapsed(scheduler).pipe(operators.map(function (ms) {
       return ms / duration;
     }), operators.takeWhile(function (percent) {
       return percent < 1;
@@ -68,7 +68,7 @@ var during$1 = function during(scheduler) {
   };
 };
 
-var during$$1 = withScheduler(during$1);
+var during$1 = withScheduler(during);
 
 var periodTypeErrorMessage = 'second argument (period) of periodOf should be a number';
 var periodRangeErrorMessage = 'second argument (period) of periodOf should be a positive number';
@@ -76,7 +76,7 @@ var periodRangeErrorMessage = 'second argument (period) of periodOf should be a 
 var cyclesTypeErrorMessage = 'third argument (cycles) of periodOf should be undefined or a number';
 var cyclesRangeErrorMessage = 'third argument (cycles) of periodOf should be a positive number';
 
-var periodOf$1 = function periodOf(scheduler) {
+var periodOf = function periodOf(scheduler) {
   return function (period, cycles) {
     if (typeof period !== 'number') {
       throw new TypeError(periodTypeErrorMessage);
@@ -104,7 +104,7 @@ var periodOf$1 = function periodOf(scheduler) {
   };
 };
 
-var periodOf$$1 = withScheduler(periodOf$1);
+var periodOf$1 = withScheduler(periodOf);
 
 var periodTypeErrorMessage$1 = 'second argument (period) of toggle should be a number';
 var periodRangeErrorMessage$1 = 'second argument (period) of toggle should be a positive number';
@@ -112,7 +112,7 @@ var periodRangeErrorMessage$1 = 'second argument (period) of toggle should be a 
 var cyclesTypeErrorMessage$1 = 'third argument (cycles) of toggle should be undefined or a number';
 var cyclesRangeErrorMessage$1 = 'third argument (cycles) of toggle should be a positive number';
 
-var toggle$1 = function toggle(scheduler) {
+var toggle = function toggle(scheduler) {
   return function (period, cycles) {
     if (typeof period !== 'number') {
       throw new TypeError(periodTypeErrorMessage$1);
@@ -140,7 +140,7 @@ var toggle$1 = function toggle(scheduler) {
   };
 };
 
-var toggle$$1 = withScheduler(toggle$1);
+var toggle$1 = withScheduler(toggle);
 
 var buildRangeError = function buildRangeError(name) {
   var errorMessage = "input of " + name + " should be smaller than 1, and larger than 0";
@@ -186,104 +186,103 @@ var asEaseInOut = function asEaseInOut(f) {
   };
 };
 
-var linear$1 = function linear(x) {
+var linear = function linear(x) {
   return x;
 };
 
-linear$1.in = linear$1;
-linear$1.out = asEaseOut(linear$1);
-linear$1.inout = asEaseInOut(linear$1);
+linear.in = linear;
+linear.out = asEaseOut(linear);
+linear.inout = asEaseInOut(linear);
 
-var quadratic$1 = function quadratic(x) {
+var quadratic = function quadratic(x) {
   return x * x;
 };
 
-quadratic$1.in = quadratic$1;
-quadratic$1.out = asEaseOut(quadratic$1);
-quadratic$1.inout = asEaseInOut(quadratic$1);
+quadratic.in = quadratic;
+quadratic.out = asEaseOut(quadratic);
+quadratic.inout = asEaseInOut(quadratic);
 
-var cubic$1 = function cubic(x) {
+var cubic = function cubic(x) {
   return x * x * x;
 };
 
-cubic$1.in = cubic$1;
-cubic$1.out = asEaseOut(cubic$1);
-cubic$1.inout = asEaseInOut(cubic$1);
+cubic.in = cubic;
+cubic.out = asEaseOut(cubic);
+cubic.inout = asEaseInOut(cubic);
 
-var sine$1 = function sine(x) {
+var sine = function sine(x) {
   return 1 - Math.cos(x * Math.PI / 2);
 };
 
-sine$1.in = sine$1;
-sine$1.out = function (x) {
+sine.in = sine;
+sine.out = function (x) {
   return Math.sin(x * Math.PI / 2);
 };
-sine$1.inout = function (x) {
+sine.inout = function (x) {
   return (1 - Math.cos(x * Math.PI)) / 2;
 };
 
-var exponential$1 = function exponential(x) {
+var exponential = function exponential(x) {
   return x === 0 ? 0 : Math.pow(2, 10 * (x - 1));
 };
 
-exponential$1.in = exponential$1;
-exponential$1.out = asEaseOut(exponential$1);
-exponential$1.inout = asEaseInOut(exponential$1);
+exponential.in = exponential;
+exponential.out = asEaseOut(exponential);
+exponential.inout = asEaseInOut(exponential);
 
-var PI = Math.PI;
-var pow = Math.pow;
-var sin = Math.sin;
+var PI = Math.PI,
+    pow = Math.pow,
+    sin = Math.sin;
 
 
-var elastic$1 = function elastic(t) {
+var elastic = function elastic(t) {
   return t === 0 ? 0 : pow(2, 10 * (t - 1)) * sin(t * (13 / 2) * PI);
 };
 
-elastic$1.in = elastic$1;
-elastic$1.out = asEaseOut(elastic$1);
-elastic$1.inout = asEaseInOut(elastic$1);
+elastic.in = elastic;
+elastic.out = asEaseOut(elastic);
+elastic.inout = asEaseInOut(elastic);
 
-var circle$1 = function circle(t) {
+var circle = function circle(t) {
   return 1 - Math.sqrt(1 - t * t);
 };
 
-circle$1.in = circle$1;
-circle$1.out = asEaseOut(circle$1);
-circle$1.inout = asEaseInOut(circle$1);
+circle.in = circle;
+circle.out = asEaseOut(circle);
+circle.inout = asEaseInOut(circle);
 
-var back$1 = function back(t) {
+var back = function back(t) {
   return t * t * (Math.E * t - Math.E + 1);
 };
 
-back$1.in = back$1;
-back$1.out = asEaseOut(back$1);
-back$1.inout = asEaseInOut(back$1);
+back.in = back;
+back.out = asEaseOut(back);
+back.inout = asEaseInOut(back);
 
-var linear$$1 = withDomainChecker(linear$1);
-var quadratic$$1 = withDomainChecker(quadratic$1);
-var cubic$$1 = withDomainChecker(cubic$1);
-var sine$$1 = withDomainChecker(sine$1);
-var exponential$$1 = withDomainChecker(exponential$1);
-var elastic$$1 = withDomainChecker(elastic$1);
-var circle$$1 = withDomainChecker(circle$1);
-var back$$1 = withDomainChecker(back$1);
+var linear$1 = withDomainChecker(linear);
+var quadratic$1 = withDomainChecker(quadratic);
+var cubic$1 = withDomainChecker(cubic);
+var sine$1 = withDomainChecker(sine);
+var exponential$1 = withDomainChecker(exponential);
+var elastic$1 = withDomainChecker(elastic);
+var circle$1 = withDomainChecker(circle);
+var back$1 = withDomainChecker(back);
 
-
-
-var index = Object.freeze({
-	linear: linear$$1,
-	quadratic: quadratic$$1,
-	cubic: cubic$$1,
-	sine: sine$$1,
-	exponential: exponential$$1,
-	elastic: elastic$$1,
-	circle: circle$$1,
-	back: back$$1
+var index = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  linear: linear$1,
+  quadratic: quadratic$1,
+  cubic: cubic$1,
+  sine: sine$1,
+  exponential: exponential$1,
+  elastic: elastic$1,
+  circle: circle$1,
+  back: back$1
 });
 
-exports.msElapsed = msElapsed$$1;
-exports.during = during$$1;
-exports.periodOf = periodOf$$1;
-exports.toggle = toggle$$1;
+exports.during = during$1;
 exports.easing = index;
+exports.msElapsed = msElapsed$1;
+exports.periodOf = periodOf$1;
+exports.toggle = toggle$1;
 //# sourceMappingURL=index.cjs.js.map
